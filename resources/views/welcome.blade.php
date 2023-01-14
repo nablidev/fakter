@@ -9,8 +9,8 @@
         <livewire:styles />
     </head>
     <body>
-        <livewire:counter /> 
-        
+        <livewire:invoice /> 
+
         <livewire:scripts />
     </body>
 </html>
