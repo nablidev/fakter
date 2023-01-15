@@ -38,7 +38,7 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="vat">
                     VAT
                 </label>
-                <input wire:model="vat" id="vat" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="19">
+                <input value="{{$vat}}" wire:keyup="$emit('vatUpdated')" wire:model="vat" id="vat" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="19">
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price_ev">

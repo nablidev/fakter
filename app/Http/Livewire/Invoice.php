@@ -8,13 +8,14 @@ class Invoice extends Component
 {
     public $item_name;
     public $price;
-    public $vat;
+    public $vat = 19;
     public $price_ev;
-    public $quantity;
+    public $quantity = 1;
     
     protected $listeners = [
         'priceUpdated' => 'updatePriceEV',
-        'priceEVUpdated' => 'updatePrice'
+        'priceEVUpdated' => 'updatePrice',
+        'vatUpdated' => 'updatePrice',
     ];
 
     public $items = [
@@ -49,16 +50,22 @@ class Invoice extends Component
 
     public function updatePrice()
     {
-        $float_value = floatval($this->price_ev);
+        $price_ev_float_value = floatval($this->price_ev);
 
-        $this->price = $float_value * 2;
+        $vat_float_value = floatval($this->vat);
+
+        $new_price = ($price_ev_float_value / 100) * $vat_float_value + $price_ev_float_value;
+
+        $this->price = round($new_price, 3);
     }
 
     public function updatePriceEV()
     {
-        $float_value = floatval($this->price);
+        $price_float_value = floatval($this->price);
 
-        $this->price_ev = $float_value / 2;
+        $new_price_ev = $price_float_value - ($price_float_value / (100 + $this->vat)) * $this->vat;
+
+        $this->price_ev = round($new_price_ev, 3);
     }
 
     public function submit()
