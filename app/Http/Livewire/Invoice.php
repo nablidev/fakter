@@ -12,6 +12,7 @@ class Invoice extends Component
     public $price_ev;
     public $quantity;
     
+    protected $listeners = ['priceUpdated' => 'updatePriceEV'];
 
     public $items = [
         [   
@@ -42,6 +43,13 @@ class Invoice extends Component
             'amount' => '3500'
         ],
     ];
+
+    public function updatePriceEV()
+    {
+        $float_value = floatval($this->price);
+
+        $this->price_ev = $float_value / 2;
+    }
 
     public function submit()
     {
