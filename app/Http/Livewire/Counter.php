@@ -6,11 +6,11 @@ use Livewire\Component;
 
 class Counter extends Component
 {
-    public $count = 0;
+    public $value;
 
-    public function increment()
+    public function submit()
     {
-        $this->count++;
+        dd($this->value);
     }
 
     public function render()

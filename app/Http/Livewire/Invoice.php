@@ -6,35 +6,57 @@ use Livewire\Component;
 
 class Invoice extends Component
 {
+    public $item_name;
+    public $price;
+    public $vat;
+    public $price_ev;
+    public $quantity;
+    
+
     public $items = [
         [   
             'id' => '1',
-            'name' => 'Apple MacBook Pro 17', 
-            'price' => '2999', 
+            'item_name' => 'Apple MacBook Pro 17', 
+            'price' => '3500', 
             'vat' => '19', 
-            'ati_price' => '3500', 
+            'price_ev' => '2999', 
             'quantity' => '1', 
             'amount' => '3500'
         ],
         [   
             'id' => '2',
-            'name' => 'Samsung Galaxy', 
-            'price' => '2999', 
+            'item_name' => 'Samsung Galaxy', 
+            'price' => '3500', 
             'vat' => '19', 
-            'ati_price' => '3500', 
+            'price_ev' => '2999', 
             'quantity' => '1', 
             'amount' => '3500'
         ],
         [   
             'id' => '3',
-            'name' => 'Xiomi Redmi 7', 
+            'item_name' => 'Xiomi Redmi 7', 
             'price' => '2999', 
             'vat' => '19', 
-            'ati_price' => '3500', 
+            'price_ev' => '3500', 
             'quantity' => '1', 
             'amount' => '3500'
         ],
     ];
+
+    public function submit()
+    {
+        
+        $this->items[] = [
+            'id' => '4',
+            'item_name' => $this->item_name, 
+            'price' => $this->price, 
+            'vat' => $this->vat, 
+            'price_ev' => $this->price_ev, 
+            'quantity' => $this->quantity, 
+            'amount' => '3500'
+        ];
+        
+    }
 
     public function render()
     {
