@@ -50,14 +50,31 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="quantity">
                     Quantity
                 </label>
-                <input wire:model="quantity" id="quantity" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="1">
+                <input value="{{$quantity}}" wire:keyup="$emit('quantityUpdated')" wire:model="quantity" id="quantity" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="1">
             </div>
         </div>
             
-        <div class="flex justify-center">
-            <button type="submit" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">
-                Add
-            </button>
+        <div class="flex flex-row mx-3">
+            <div class="basis-1/3 px-3">
+                <div class="flex justify-start">
+
+                </div>
+            </div>
+            <div class="basis-1/3 px-3">
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">
+                        Add
+                    </button>
+                </div>
+            </div>
+            <div class="basis-1/3 px-3">
+                <div class="flex justify-end">
+                    <p class="font-sans text-3xl font-bold">
+                        {{-- round(floatval($price) * floatval($quantity), 3)--}}
+                        {{$amount}}
+                    </p>
+                </div>
+            </div>
         </div>
     </form>
     
@@ -97,7 +114,7 @@
                 @foreach ($items as $item)
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <th class="px-6 py-4">
-                            {{$item['id']}}
+                            {{$item['num']}}
                         </th>
                         <td class="px-6 py-4">
                             {{$item['item_name']}}
