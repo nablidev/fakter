@@ -17,9 +17,10 @@ class Invoice extends Component
     public $total = 0;
 
     protected $rules = [
-        'item_name' => 'required|max:2048',
-        'price' => 'required',
-        'vat' => 'required|min:0|max:100'
+        #'item_name' => 'required|max:2048',
+        #'price' => 'required',
+        'vat' => 'required|numeric|between:0,100',
+        'quantity' => 'required|numeric|gt:0'
     ];
 
     
@@ -111,6 +112,12 @@ class Invoice extends Component
             'amount' => number_format(floatval(str_replace(',','',$this->amount)), 3),
         ];
         
+    }
+
+    public function updated($vat, $quantity){
+
+        $this->validateOnly($vat);
+        $this->validateOnly($quantity);
     }
 
     public function render()
