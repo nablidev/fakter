@@ -6,15 +6,21 @@ use Livewire\Component;
 
 class Invoice extends Component
 {
-    public $item_name;
-    public $price;
-    public $vat = 19;
-    public $price_ev;
-    public $quantity = 1;
-    public $amount = 0;
+    public $item_name = '';
+    public $price = '0';
+    public $vat = '19';
+    public $price_ev = '0';
+    public $quantity = '1';
+    public $amount = '0';
 
     public $num = 4;
     public $total = 0;
+
+    protected $rules = [
+        'item_name' => 'required|max:2048',
+        'price' => 'required',
+        'vat' => 'required|min:0|max:100'
+    ];
 
     
     protected $listeners = [
@@ -28,29 +34,29 @@ class Invoice extends Component
         [   
             'num' => 1,
             'item_name' => 'Apple MacBook Pro 17', 
-            'price' => 1500, 
-            'vat' => 19, 
-            'price_ev' => 1260.504, 
-            'quantity' => 1, 
-            'amount' => 1500
+            'price' => '1500', 
+            'vat' => '19', 
+            'price_ev' => '1260.504', 
+            'quantity' => '1', 
+            'amount' => '1500'
         ],
         [   
             'num' => 2,
             'item_name' => 'Samsung Galaxy', 
-            'price' => 700, 
-            'vat' => 19, 
-            'price_ev' => 588.235, 
-            'quantity' => 1, 
-            'amount' => 700
+            'price' => '700', 
+            'vat' => '19', 
+            'price_ev' => '588.235', 
+            'quantity' => '1', 
+            'amount' => '700'
         ],
         [   
             'num' => 3,
             'item_name' => 'Xiomi Redmi 7', 
-            'price' => 600, 
-            'vat' => 19, 
-            'price_ev' => 504.202, 
-            'quantity' => 1, 
-            'amount' => 600
+            'price' => '600', 
+            'vat' => '19', 
+            'price_ev' => '504.202', 
+            'quantity' => '1', 
+            'amount' => '600'
         ],
     ];
 
@@ -58,49 +64,51 @@ class Invoice extends Component
 
     public function updateAmount()
     {
-        #convert quantity from ui input to float and calculate new amout 
-        $newAmount = $this->price * floatval($this->quantity);
+        $newAmount = floatval(str_replace(',','',$this->price)) * floatval(str_replace(',','',$this->quantity));
 
-        $this->amount = round($newAmount, 3);
+        $this->amount = number_format($newAmount, 3);
     }
 
     public function updatePriceAndAmount()
     {
-        $price_ev_float_value = floatval($this->price_ev);
+        $price_ev_float_value = floatval(str_replace(',','',$this->price_ev));
 
-        $vat_float_value = floatval($this->vat);
+        $vat_float_value = floatval(str_replace(',','',$this->vat));
 
         $new_price = $this->calculatePriceFromPriceEVAndVAT($price_ev_float_value, $vat_float_value);
 
-        $this->price = round($new_price, 3);
+        $this->price = number_format($new_price, 3);
 
         $this->updateAmount();
     }
 
     public function updatePriceEVAndAmount()
     {
-        $price_float_value = floatval($this->price);
+
+        $price_float_value = floatval(str_replace(',','',$this->price));
 
         $new_price_ev = $this->calculatePriceEVFromPriceAndVAT($price_float_value, $this->vat);
 
-        $this->price_ev = round($new_price_ev, 3);
+        $this->price_ev = number_format($new_price_ev, 3);
 
         $this->updateAmount();
-    }
 
+    }
     
 
     public function submit()
     {
+        #using str_replace to replace ',' with '' so that floatval don't mistake ',' as decimal point separators for numbers
+        #that have more than 3 decimals
         
         $this->items[] = [
             'num' => $this->num++,
             'item_name' => $this->item_name, 
-            'price' => $this->price, 
+            'price' => number_format(floatval(str_replace(',','',$this->price)), 3), 
             'vat' => $this->vat, 
-            'price_ev' => $this->price_ev, 
+            'price_ev' => number_format(floatval(str_replace(',','',$this->price_ev)), 3), 
             'quantity' => $this->quantity, 
-            'amount' => 3500
+            'amount' => number_format(floatval(str_replace(',','',$this->amount)), 3),
         ];
         
     }
