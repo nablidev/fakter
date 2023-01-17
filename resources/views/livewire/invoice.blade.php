@@ -24,7 +24,7 @@
         <div class="flex flex-wrap mx-3 my-8">
             <div class="w-full md:w-2/6 px-3 mb-6 md:mb-0">
                 <div class="flex flex-col items-center">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="item-name">
+                    <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="item-name">
                         Item Name
                     </label>
                     <input wire:model="item_name" id="item-name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="item name">
@@ -33,7 +33,7 @@
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
                 <div class="flex flex-col items-center">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price">
+                    <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="price">
                         Price
                     </label>
                     <input value="{{$price}}" wire:keyup="$emit('priceUpdated')" wire:model="price" id="price" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
@@ -42,7 +42,7 @@
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
                 <div class="flex flex-col items-center">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="vat">
+                    <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="vat">
                         VAT %
                     </label>
                     <input value="{{$vat}}" wire:keyup="$emit('vatUpdated')" wire:model="vat" id="vat" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
@@ -51,7 +51,7 @@
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
                 <div class="flex flex-col items-center">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price_ev">
+                    <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="price_ev">
                         Price .exc VAT
                     </label>
                     <input value="{{$price_ev}}" wire:keyup="$emit('priceEVUpdated')" wire:model="price_ev" id="price_ev" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
@@ -60,7 +60,7 @@
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
                 <div class="flex flex-col items-center">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="quantity">
+                    <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="quantity">
                         Quantity
                     </label>
                     <input value="{{$quantity}}" wire:keyup="$emit('quantityUpdated')" wire:model="quantity" id="quantity" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="1">
