@@ -17,10 +17,11 @@ class Invoice extends Component
     public $total = 0;
 
     protected $rules = [
-        #'item_name' => 'required|max:2048',
-        #'price' => 'required',
+        'item_name' => 'required|max:512',
+        'price' => 'required|numeric|gte:0|lte:1000000000',
         'vat' => 'required|numeric|between:0,100',
-        'quantity' => 'required|numeric|gt:0'
+        'price_ev' => 'required|numeric|gte:0|lte:1000000000',
+        'quantity' => 'required|numeric|gte:0|lte:1000000000'
     ];
 
     
@@ -65,32 +66,34 @@ class Invoice extends Component
 
     public function updateAmount()
     {
-        $newAmount = floatval(str_replace(',','',$this->price)) * floatval(str_replace(',','',$this->quantity));
+        $newAmount = floatval($this->price) * floatval($this->quantity);
 
-        $this->amount = number_format($newAmount, 3);
+        $this->amount = number_format($newAmount, 3, '.', '');
     }
 
     public function updatePriceAndAmount()
     {
-        $price_ev_float_value = floatval(str_replace(',','',$this->price_ev));
+        $price_ev_float_value = floatval($this->price_ev);
 
-        $vat_float_value = floatval(str_replace(',','',$this->vat));
+        $vat_float_value = floatval($this->vat);
 
         $new_price = $this->calculatePriceFromPriceEVAndVAT($price_ev_float_value, $vat_float_value);
 
-        $this->price = number_format($new_price, 3);
+        $this->price = number_format($new_price, 3, '.', '');
 
         $this->updateAmount();
     }
 
     public function updatePriceEVAndAmount()
     {
+        
+        $price_float_value = floatval($this->price);
 
-        $price_float_value = floatval(str_replace(',','',$this->price));
+        $vat_float_value = floatval($this->vat);
 
-        $new_price_ev = $this->calculatePriceEVFromPriceAndVAT($price_float_value, $this->vat);
+        $new_price_ev = $this->calculatePriceEVFromPriceAndVAT($price_float_value, $vat_float_value);
 
-        $this->price_ev = number_format($new_price_ev, 3);
+        $this->price_ev = number_format($new_price_ev, 3, '.', '');
 
         $this->updateAmount();
 
@@ -99,25 +102,25 @@ class Invoice extends Component
 
     public function submit()
     {
-        #using str_replace to replace ',' with '' so that floatval don't mistake ',' as decimal point separators for numbers
-        #that have more than 3 decimals
         
+        $validatedData = $this->validate();
+
         $this->items[] = [
             'num' => $this->num++,
             'item_name' => $this->item_name, 
-            'price' => number_format(floatval(str_replace(',','',$this->price)), 3), 
+            'price' => $this->price, 
             'vat' => $this->vat, 
-            'price_ev' => number_format(floatval(str_replace(',','',$this->price_ev)), 3), 
+            'price_ev' => $this->price_ev, 
             'quantity' => $this->quantity, 
-            'amount' => number_format(floatval(str_replace(',','',$this->amount)), 3),
+            'amount' => $this->amount,
         ];
         
     }
 
-    public function updated($vat, $quantity){
-
-        $this->validateOnly($vat);
-        $this->validateOnly($quantity);
+    public function updated()
+    {
+        #validate all field on every update
+        $this->validate();
     }
 
     public function render()

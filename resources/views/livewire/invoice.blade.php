@@ -23,16 +23,22 @@
     <form wire:submit.prevent="submit">
         <div class="flex flex-wrap mx-3 my-8">
             <div class="w-full md:w-2/6 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="item-name">
-                    Item Name
-                </label>
-                <input wire:model="item_name" id="item-name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="item name">
+                <div class="flex flex-col items-center">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="item-name">
+                        Item Name
+                    </label>
+                    <input wire:model="item_name" id="item-name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="item name">
+                    @error('item_name') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
+                </div>
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price">
-                    Price
-                </label>
-                <input value="{{$price}}" wire:keyup="$emit('priceUpdated')" wire:model="price" id="price" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
+                <div class="flex flex-col items-center">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price">
+                        Price
+                    </label>
+                    <input value="{{$price}}" wire:keyup="$emit('priceUpdated')" wire:model="price" id="price" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
+                    @error('price') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
+                </div>
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
                 <div class="flex flex-col items-center">
@@ -44,10 +50,13 @@
                 </div>
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price_ev">
-                    Price .exc VAT
-                </label>
-                <input value="{{$price_ev}}" wire:keyup="$emit('priceEVUpdated')" wire:model="price_ev" id="price_ev" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
+                <div class="flex flex-col items-center">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price_ev">
+                        Price .exc VAT
+                    </label>
+                    <input value="{{$price_ev}}" wire:keyup="$emit('priceEVUpdated')" wire:model="price_ev" id="price_ev" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
+                    @error('price_ev') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
+                </div>
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
                 <div class="flex flex-col items-center">
@@ -75,8 +84,7 @@
             </div>
             <div class="basis-1/3 px-3">
                 <div class="flex justify-end">
-                    <p class="font-sans text-3xl font-bold">
-                        {{-- round(floatval($price) * floatval($quantity), 3)--}}
+                    <p class="break-all font-sans text-3xl font-bold">
                         {{$amount}}
                     </p>
                 </div>
@@ -119,7 +127,7 @@
             <tbody>
                 @foreach ($items as $item)
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                        <th class="px-6 py-4">
+                        <th class="break-all px-6 py-4">
                             {{$item['num']}}
                         </th>
                          
@@ -127,19 +135,19 @@
                             {{$item['item_name']}}
                         </td>
                         
-                        <td class="px-6 py-4">
+                        <td class="break-all px-6 py-4">
                             {{$item['price']}}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="break-all px-6 py-4">
                             {{$item['vat']}}%
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="break-all px-6 py-4">
                             {{$item['price_ev']}}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="breal-all px-6 py-4">
                             {{$item['quantity']}}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="break-all px-6 py-4">
                             {{$item['amount']}}
                         </td>
                     </tr>
