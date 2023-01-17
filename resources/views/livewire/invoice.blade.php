@@ -69,7 +69,7 @@
             </div>
         </div>
             
-        <div class="flex flex-row mx-3">
+        <div class="flex flex-row mx-3 my-0">
             <div class="basis-1/3 px-3">
                 <div class="flex justify-start">
 
@@ -102,6 +102,9 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
+                        
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Id
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -127,8 +130,11 @@
             <tbody>
                 @foreach ($items as $item)
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <td class="break-all px-6 py-4">
+                            <button wire:click="deleteItem({{$item['num']}})" class="text-red-600 font-bold text-center">x</button>
+                        </td>
                         <th class="break-all px-6 py-4">
-                            {{$item['num']}}
+                            {{$item['num']}}                            
                         </th>
                          
                         <td class="break-all px-6 py-4">
@@ -155,4 +161,23 @@
             </tbody>
         </table>
     </div>
+
+    <div class="flex flex-row mx-3 my-3">
+        <div class="basis-1/3 px-3">
+            <div class="flex justify-start">
+
+            </div>
+        </div>
+        <div class="basis-1/3 px-3">
+            
+        </div>
+        <div class="basis-1/3 px-3">
+            <div class="flex justify-end">
+                <p class="break-all font-sans text-3xl font-bold">
+                    Total = {{$total}}
+                </p>
+            </div>
+        </div>
+    </div>
+
 </div>

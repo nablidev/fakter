@@ -14,7 +14,7 @@ class Invoice extends Component
     public $amount = '0';
 
     public $num = 4;
-    public $total = 0;
+    public $total = '2800';
 
     protected $rules = [
         'item_name' => 'required|max:512',
@@ -98,6 +98,24 @@ class Invoice extends Component
         $this->updateAmount();
 
     }
+
+    public function deleteItem($item_num)
+    {
+        
+        $new_total = floatval($this->total);
+
+        foreach($this->items as $key=>$item)
+        {
+            if($item['num'] == $item_num)
+            {
+                $new_total = floatval($this->total) - $item['amount'];
+
+                unset($this->items[$key]);
+            }
+        }
+
+        $this->total = number_format($new_total,3,'.',''); 
+    }
     
 
     public function submit()
@@ -114,6 +132,14 @@ class Invoice extends Component
             'quantity' => $this->quantity, 
             'amount' => $this->amount,
         ];
+
+        $new_total = floatval($this->total) + floatval($this->amount);
+
+        $this->total = number_format($new_total,3,'.',''); 
+
+        #initialize amount back to 0
+
+        #maybe initialize other variables
         
     }
 
