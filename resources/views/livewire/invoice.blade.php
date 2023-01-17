@@ -122,9 +122,11 @@
                         <th class="px-6 py-4">
                             {{$item['num']}}
                         </th>
-                        <td class="px-6 py-4">
+                         
+                        <td class="break-all px-6 py-4">
                             {{$item['item_name']}}
                         </td>
+                        
                         <td class="px-6 py-4">
                             {{$item['price']}}
                         </td>
