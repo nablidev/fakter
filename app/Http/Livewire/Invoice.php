@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use PDF;
 
 class Invoice extends Component
 {
@@ -112,7 +113,19 @@ class Invoice extends Component
     
     public function generatePDF()
     {
-        dd("your invoice generated pdf");
+        //dd("your invoice generated pdf");
+        //return redirect()->to('/generate-pdf');
+
+        
+        $viewData = [
+            'title' => 'MY INVOICE',
+            'date' => date('m/d/Y')
+        ];
+          
+        $pdfContent = PDF::loadView('myPDF', $viewData)->output();
+        return response()->streamDownload(fn () => print($pdfContent),"filename.pdf");
+
+        
     }
 
     public function submit()
