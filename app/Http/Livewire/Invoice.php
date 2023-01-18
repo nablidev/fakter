@@ -24,13 +24,6 @@ class Invoice extends Component
         'quantity' => 'required|numeric|gte:0|lte:1000000000'
     ];
 
-    
-    protected $listeners = [
-        'priceUpdated' => 'updatePriceEVAndAmount',
-        'priceEVUpdated' => 'updatePriceAndAmount',
-        'vatUpdated' => 'updatePriceAndAmount',
-        'quantityUpdated' => 'updateAmount',
-    ];
 
     public $items = [
         [   
@@ -117,6 +110,10 @@ class Invoice extends Component
         $this->total = number_format($new_total,3,'.',''); 
     }
     
+    public function generatePDF()
+    {
+        dd("your invoice generated pdf");
+    }
 
     public function submit()
     {

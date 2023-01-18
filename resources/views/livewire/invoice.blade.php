@@ -7,15 +7,25 @@
             <p>
                 This is my first grid item
             </p>
+            <select name="" id="">
+                <option value="">Invoice</option>
+
+            </select>
         </div>
         <div class="bg-blue-500 text-white h-24">
             <p>
                 This is my second grid item
             </p>
+            <input type="date">
         </div>
         <div class="bg-yellow-500 text-white h-24">
             <p>
                 This is my third grid item
+            </p>
+        </div>
+        <div class="bg-purple-500 text-white h-24">
+            <p>
+                This is my fourth grid item
             </p>
         </div>
     </div>
@@ -36,7 +46,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="price">
                         Price
                     </label>
-                    <input value="{{$price}}" wire:keyup="$emit('priceUpdated')" wire:model="price" id="price" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
+                    <input value="{{$price}}" wire:keyup="updatePriceEVAndAmount" wire:model="price" id="price" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
                     @error('price') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
@@ -45,7 +55,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="vat">
                         VAT %
                     </label>
-                    <input value="{{$vat}}" wire:keyup="$emit('vatUpdated')" wire:model="vat" id="vat" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
+                    <input value="{{$vat}}" wire:keyup="updatePriceAndAmount" wire:model="vat" id="vat" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
                     @error('vat') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
@@ -54,7 +64,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="price_ev">
                         Price .exc VAT
                     </label>
-                    <input value="{{$price_ev}}" wire:keyup="$emit('priceEVUpdated')" wire:model="price_ev" id="price_ev" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
+                    <input value="{{$price_ev}}" wire:keyup="updatePriceAndAmount" wire:model="price_ev" id="price_ev" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
                     @error('price_ev') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
@@ -63,7 +73,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="quantity">
                         Quantity
                     </label>
-                    <input value="{{$quantity}}" wire:keyup="$emit('quantityUpdated')" wire:model="quantity" id="quantity" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="1">
+                    <input value="{{$quantity}}" wire:keyup="updateAmount" wire:model="quantity" id="quantity" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="1">
                     @error('quantity') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
@@ -169,7 +179,11 @@
             </div>
         </div>
         <div class="basis-1/3 px-3">
-            
+            <div class="flex justify-center">
+                <button wire:click="generatePDF" class="p-4 rounded-lg bg-red-500 hover:bg-red-600 font-bold text-white shadow-lg shadow-red-300 transition ease-in-out duration-200 translate-10">
+                    Generate
+                </button>
+            </div>
         </div>
         <div class="basis-1/3 px-3">
             <div class="flex justify-end">
