@@ -3,32 +3,88 @@
         Grid
     </h2>
     <div class="grid grid-cols-2 gap-4">
-        <div class="bg-red-500 text-white h-full">
+        <div class="bg-red-500 h-full">
             <p>
                 This is my first grid item
             </p>
             <select name="" id="">
                 <option value="">Invoice</option>
-
+                <option value="">Credit Note</option>
+                <option value="">Quote</option>
+                <option value="">Purchase Order</option>
+                <option value="">Receipt</option>
             </select>
         </div>
-        <div class="bg-blue-500 text-white h-24">
+        <div class="bg-blue-500 h-24">
+            <div class="flex flex-col">
+                <input type="text" placeholder="invoice no">
+                <input type="date">
+            </div>
             <p>
                 This is my second grid item
             </p>
-            <input type="date">
+            
         </div>
-        <div class="bg-yellow-500 text-white h-24">
-            <p>
-                This is my third grid item
-            </p>
+        <div class="">
+            <div class="flex flex-col p-2">
+                <div class="flex">
+                    <div class="basis-1/3">
+                        <label for="name" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Name</label>
+                    </div>
+                    <div class="basis-2/3">
+                        <input type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="basis-1/3">
+                        <label for="address" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Address</label>
+                    </div>
+                    <div class="basis-2/3">
+                        <input type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="basis-1/3">
+                        <label for="fiscal-code" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Fiscal Code</label>
+                    </div>
+                    <div class="basis-2/3">
+                        <input type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="bg-purple-500 text-white h-24">
-            <p>
-                This is my fourth grid item
-            </p>
+        <div class="">
+            <div class="flex flex-col p-2">
+                <div class="flex">
+                    <div class="basis-1/3">
+                        <label for="name" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Name</label>
+                    </div>
+                    <div class="basis-2/3">
+                        <input type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="basis-1/3">
+                        <label for="address" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Address</label>
+                    </div>
+                    <div class="basis-2/3">
+                        <input type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="basis-1/3">
+                        <label for="fiscal-code" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Fiscal Code</label>
+                    </div>
+                    <div class="basis-2/3">
+                        <input type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <hr class="h-px my-8 mx-64 bg-gray-300 border-0 dark:bg-gray-700">
+
     
     <form wire:submit.prevent="submit">
         <div class="flex flex-wrap mx-3 my-8">
@@ -37,7 +93,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="item-name">
                         Item Name
                     </label>
-                    <input wire:model="item_name" id="item-name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="item name">
+                    <input type="text" id="item-name" wire:model="item_name"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  placeholder="item name">
                     @error('item_name') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>

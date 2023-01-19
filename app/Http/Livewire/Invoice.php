@@ -119,7 +119,8 @@ class Invoice extends Component
         
         $viewData = [
             'title' => 'MY INVOICE',
-            'date' => date('m/d/Y')
+            'date' => date('m/d/Y'),
+            'items' => $this->items,
         ];
           
         $pdfContent = PDF::loadView('myPDF', $viewData)->output();
