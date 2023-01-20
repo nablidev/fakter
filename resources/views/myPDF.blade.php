@@ -1,233 +1,129 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>invoice</title>
-    
-    <style>
+        <title>invoice</title>
         
-        /* reset */
-
-        *
-        {
-            border: 0;
-            box-sizing: content-box;
-            color: inherit;
-            font-family: inherit;
-            font-size: inherit;
-            font-style: inherit;
-            font-weight: inherit;
-            line-height: inherit;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            text-decoration: none;
-            vertical-align: top;
-        }
-
-        /* content editable */
-
-        *[contenteditable] { border-radius: 0.25em; min-width: 1em; outline: 0; }
-
-        *[contenteditable] { cursor: pointer; }
-
-        *[contenteditable]:hover, *[contenteditable]:focus, td:hover *[contenteditable], td:focus *[contenteditable], img.hover { background: #DEF; box-shadow: 0 0 1em 0.5em #DEF; }
-
-        span[contenteditable] { display: inline-block; }
-
-        /* heading */
-
-        h1 { font: bold 100% sans-serif; letter-spacing: 0.5em; text-align: center; text-transform: uppercase; }
-
-        /* table */
-
-        table { font-size: 75%; table-layout: fixed; width: 100%; }
-        table { border-collapse: separate; border-spacing: 2px; }
-        th, td { border-width: 1px; padding: 0.5em; position: relative; text-align: left; }
-        th, td { border-radius: 0.25em; border-style: solid; }
-        th { background: #EEE; border-color: #BBB; }
-        td { border-color: #DDD; }
-
-        /* page */
-
-        html { font: 16px/1 'Open Sans', sans-serif; overflow: auto; padding: 0.5in; }
-        html { background: #999; cursor: default; }
-
-        body { box-sizing: border-box; height: 11in; margin: 0 auto; overflow: hidden; padding: 0.5in; width: 8.5in; }
-        body { background: #FFF; border-radius: 1px; box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5); }
-
-        /* header */
-
-        header { margin: 0 0 3em; }
-        header:after { clear: both; content: ""; display: table; }
-
-        header h1 { background: #000; border-radius: 0.25em; color: #FFF; margin: 0 0 1em; padding: 0.5em 0; }
-        header address { float: left; font-size: 75%; font-style: normal; line-height: 1.25; margin: 0 1em 1em 0; }
-        header address p { margin: 0 0 0.25em; }
-        header span, header img { display: block; float: right; }
-        header span { margin: 0 0 1em 1em; max-height: 25%; max-width: 60%; position: relative; }
-        header img { max-height: 100%; max-width: 100%; }
-        header input { cursor: pointer; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
-
-        /* article */
-
-        article, article address, table.meta, table.inventory { margin: 0 0 3em; }
-        article:after { clear: both; content: ""; display: table; }
-        article h1 { clip: rect(0 0 0 0); position: absolute; }
-
-        article address { float: left; font-size: 125%; font-weight: bold; }
-
-        /* table meta & balance */
-
-        table.meta, table.balance { float: right; width: 36%; }
-        table.meta:after, table.balance:after { clear: both; content: ""; display: table; }
-
-        /* table meta */
-
-        table.meta th { width: 40%; }
-        table.meta td { width: 60%; }
-
-        /* table items */
-
-        table.inventory { clear: both; width: 100%; }
-        table.inventory th { font-weight: bold; text-align: center; }
-
-        table.inventory td:nth-child(1) { width: 26%; }
-        table.inventory td:nth-child(2) { width: 38%; }
-        table.inventory td:nth-child(3) { text-align: right; width: 12%; }
-        table.inventory td:nth-child(4) { text-align: right; width: 12%; }
-        table.inventory td:nth-child(5) { text-align: right; width: 12%; }
-
-        /* table balance */
-
-        table.balance th, table.balance td { width: 50%; }
-        table.balance td { text-align: right; }
-
-        /* aside */
-
-        aside h1 { border: none; border-width: 0 0 1px; margin: 0 0 1em; }
-        aside h1 { border-color: #999; border-bottom-style: solid; }
-
-        /* javascript */
-
-        .add, .cut
-        {
-            border-width: 1px;
-            display: block;
-            font-size: .8rem;
-            padding: 0.25em 0.5em;	
-            float: left;
-            text-align: center;
-            width: 0.6em;
-        }
-
-        .add, .cut
-        {
-            background: #9AF;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            background-image: -moz-linear-gradient(#00ADEE 5%, #0078A5 100%);
-            background-image: -webkit-linear-gradient(#00ADEE 5%, #0078A5 100%);
-            border-radius: 0.5em;
-            border-color: #0076A3;
-            color: #FFF;
-            cursor: pointer;
-            font-weight: bold;
-            text-shadow: 0 -1px 2px rgba(0,0,0,0.333);
-        }
-
-        .add { margin: -2.5em 0 0; }
-
-        .add:hover { background: #00ADEE; }
-
-        .cut { opacity: 0; position: absolute; top: 0; left: -1.5em; }
-        .cut { -webkit-transition: opacity 100ms ease-in; }
-
-        tr:hover .cut { opacity: 1; }
-
-        @media print {
-            * { -webkit-print-color-adjust: exact; }
-            html { background: none; padding: 0; }
-            body { box-shadow: none; margin: 0; }
-            span:empty { display: none; }
-            .add, .cut { display: none; }
-        }
-
-        @page { margin: 0; }
-
-    </style>
-</head>
+        @include('bootstrap-styles')
+        
+    </head>
     <body>
-        <header>
-			<h1>Invoice</h1>
-			<address contenteditable>
-				<p>Jonathan Neal</p>
-				<p>101 E. Chapman Ave<br>Orange, CA 92866</p>
-				<p>(800) 555-1234</p>
-			</address>
-			<span><img alt="" src="http://www.jonathantneal.com/examples/invoice/logo.png"><input type="file" accept="image/*"></span>
-		</header>
-		<article>
-			<h1>Recipient</h1>
-			<address contenteditable>
-				<p>Some Company<br>c/o Some Guy</p>
-			</address>
-			<table class="meta">
-				<tr>
-					<th><span contenteditable>Invoice #</span></th>
-					<td><span contenteditable>101138</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Date</span></th>
-					<td><span contenteditable>January 1, 2012</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Amount Due</span></th>
-					<td><span id="prefix" contenteditable>$</span><span>600.00</span></td>
-				</tr>
-			</table>
-			<table class="inventory">
-				<thead>
-					<tr>
-						<th><span contenteditable>Item</span></th>
-						<th><span contenteditable>Description</span></th>
-						<th><span contenteditable>Rate</span></th>
-						<th><span contenteditable>Quantity</span></th>
-						<th><span contenteditable>Price</span></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><a class="cut">-</a><span contenteditable>Front End Consultation</span></td>
-						<td><span contenteditable>Experience Review</span></td>
-						<td><span data-prefix>$</span><span contenteditable>150.00</span></td>
-						<td><span contenteditable>4</span></td>
-						<td><span data-prefix>$</span><span>600.00</span></td>
-					</tr>
-				</tbody>
-			</table>
-			<a class="add">+</a>
-			<table class="balance">
-				<tr>
-					<th><span contenteditable>Total</span></th>
-					<td><span data-prefix>$</span><span>600.00</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Amount Paid</span></th>
-					<td><span data-prefix>$</span><span contenteditable>0.00</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Balance Due</span></th>
-					<td><span data-prefix>$</span><span>600.00</span></td>
-				</tr>
-			</table>
-		</article>
-		<aside>
-			<h1><span contenteditable>Additional Notes</span></h1>
-			<div contenteditable>
-				<p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
-			</div>
-		</aside>
+        <div class="card">
+            <div class="card-body">
+              <div class="container mb-5 mt-3">
+                <div class="row d-flex align-items-baseline">
+                  <div class="col-xl-9">
+                    <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #123-123</strong></p>
+                  </div>
+                  <div class="col-xl-3 float-end">
+                    <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i
+                        class="fas fa-print text-primary"></i> Print</a>
+                    <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i
+                        class="far fa-file-pdf text-danger"></i> Export</a>
+                  </div>
+                  <hr>
+                </div>
+          
+                <div class="container">
+                  <div class="col-md-12">
+                    <div class="text-center">
+                      <i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
+                      <p class="pt-0">MDBootstrap.com</p>
+                    </div>
+          
+                  </div>
+          
+          
+                  <div class="row">
+                    <div class="col-xl-8">
+                      <ul class="list-unstyled">
+                        <li class="text-muted">To: <span style="color:#5d9fc5 ;">John Lorem</span></li>
+                        <li class="text-muted">Street, City</li>
+                        <li class="text-muted">State, Country</li>
+                        <li class="text-muted"><i class="fas fa-phone"></i> 123-456-789</li>
+                      </ul>
+                    </div>
+                    <div class="col-xl-4">
+                      <p class="text-muted">Invoice</p>
+                      <ul class="list-unstyled">
+                        <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                            class="fw-bold">ID:</span>#123-456</li>
+                        <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                            class="fw-bold">Creation Date: </span>Jun 23,2021</li>
+                        <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                            class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">
+                            Unpaid</span></li>
+                      </ul>
+                    </div>
+                  </div>
+          
+                  <div class="row my-2 mx-1 justify-content-center">
+                    <table class="table table-striped table-borderless">
+                      <thead style="background-color:#84B0CA ;" class="text-white">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Description</th>
+                          <th scope="col">Qty</th>
+                          <th scope="col">Unit Price</th>
+                          <th scope="col">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Pro Package</td>
+                          <td>4</td>
+                          <td>$200</td>
+                          <td>$800</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Web hosting</td>
+                          <td>1</td>
+                          <td>$10</td>
+                          <td>$10</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td>Consulting</td>
+                          <td>1 year</td>
+                          <td>$300</td>
+                          <td>$300</td>
+                        </tr>
+                      </tbody>
+          
+                    </table>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-8">
+                      <p class="ms-3">Add additional notes and payment information</p>
+          
+                    </div>
+                    <div class="col-xl-3">
+                      <ul class="list-unstyled">
+                        <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>$1110</li>
+                        <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>$111</li>
+                      </ul>
+                      <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
+                          style="font-size: 25px;">$1221</span></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-xl-10">
+                      <p>Thank you for your purchase</p>
+                    </div>
+                    <div class="col-xl-2">
+                      <button type="button" class="btn btn-primary text-capitalize"
+                        style="background-color:#60bdf3 ;">Pay Now</button>
+                    </div>
+                  </div>
+          
+                </div>
+              </div>
+            </div>
+        </div>
     </body>
 </html>
