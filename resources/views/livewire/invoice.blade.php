@@ -2,88 +2,110 @@
     <h2 class="text-4xl font-bold text-center py-8">
         Grid
     </h2>
-    <div class="grid grid-cols-2 gap-4">
-        <div class="bg-red-500 h-full">
-            <p>
-                This is my first grid item
-            </p>
-            <select name="" id="">
-                <option value="">Invoice</option>
-                <option value="">Credit Note</option>
-                <option value="">Quote</option>
-                <option value="">Purchase Order</option>
-                <option value="">Receipt</option>
-            </select>
-        </div>
-        <div class="bg-blue-500 h-24">
-            <div class="flex flex-col">
-                <input type="text" placeholder="invoice no">
-                <input type="date">
-            </div>
-            <p>
-                This is my second grid item
-            </p>
-            
-        </div>
-        <div class="">
-            <div class="flex flex-col p-2">
-                <div class="flex">
-                    <div class="basis-1/3">
-                        <label for="name" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Name</label>
-                    </div>
-                    <div class="basis-2/3">
-                        <input type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
-                    </div>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="flex flex-col p-2">
+            <div class="flex">
+                <div class="basis-1/3">
+                    <label for="type" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Type</label>
                 </div>
-                <div class="flex">
-                    <div class="basis-1/3">
-                        <label for="address" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Address</label>
-                    </div>
-                    <div class="basis-2/3">
-                        <input type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
-                    </div>
-                </div>
-                <div class="flex">
-                    <div class="basis-1/3">
-                        <label for="fiscal-code" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Fiscal Code</label>
-                    </div>
-                    <div class="basis-2/3">
-                        <input type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
-                    </div>
+                <div class="basis-2/3">
+                    <select class="form-select block w-full py-3 px-4 text-gray-700 bg-white border border-gray-400 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2">
+                        <option selected value="Invoice">Invoice</option>
+                        <option value="Credit Note">Credit Note</option>
+                        <option value="Quote">Quote</option>
+                        <option value="Purchase Order">Purchase Order</option>
+                        <option value="Receipt">Receipt</option>    
+                    </select>
                 </div>
             </div>
         </div>
-        <div class="">
-            <div class="flex flex-col p-2">
-                <div class="flex">
-                    <div class="basis-1/3">
-                        <label for="name" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Name</label>
-                    </div>
-                    <div class="basis-2/3">
-                        <input type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
-                    </div>
+
+        <div class="flex flex-col p-2">
+            <div class="flex">
+                <div class="basis-1/3">
+                    <label for="invoice-no" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">No</label>
                 </div>
-                <div class="flex">
-                    <div class="basis-1/3">
-                        <label for="address" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Address</label>
-                    </div>
-                    <div class="basis-2/3">
-                        <input type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
-                    </div>
+                <div class="basis-2/3">
+                    <input type="text" id="invoice-no" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="123456">
                 </div>
-                <div class="flex">
-                    <div class="basis-1/3">
-                        <label for="fiscal-code" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Fiscal Code</label>
-                    </div>
-                    <div class="basis-2/3">
-                        <input type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
-                    </div>
+            </div>
+            <div class="flex">
+                <div class="basis-1/3">
+                    <label for="invoice-date" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Date</label>
+                </div>
+                <div class="basis-2/3">
+                    <input type="date" id="invoice-date" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="01/02/1234">
                 </div>
             </div>
         </div>
+        
+        <div class="col-span-2">
+            <hr class="h-px my-1 mx-10 sm:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
+        </div>
+
+        <div class="flex flex-col p-2">
+            <div class="flex justify-center">
+                <p class="text-xl font-bold block uppercase tracking-wide text-gray-700 mb-2">bill from</p>
+            </div>
+            <div class="flex">
+                <div class="basis-1/3">
+                    <label for="name" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Name</label>
+                </div>
+                <div class="basis-2/3">
+                    <input type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="basis-1/3">
+                    <label for="address" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Address</label>
+                </div>
+                <div class="basis-2/3">
+                    <input type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="basis-1/3">
+                    <label for="fiscal-code" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Fiscal Code</label>
+                </div>
+                <div class="basis-2/3">
+                    <input type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col p-2">
+            <div class="flex justify-center">
+                <p class="text-xl font-bold block uppercase tracking-wide text-gray-700 mb-2">bill to</p>
+            </div>
+            <div class="flex">
+                <div class="basis-1/3">
+                    <label for="name" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Name</label>
+                </div>
+                <div class="basis-2/3">
+                    <input type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="basis-1/3">
+                    <label for="address" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Address</label>
+                </div>
+                <div class="basis-2/3">
+                    <input type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="basis-1/3">
+                    <label for="fiscal-code" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Fiscal Code</label>
+                </div>
+                <div class="basis-2/3">
+                    <input type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
+                </div>
+            </div>
+        </div>
+        
     </div>
 
-    <hr class="h-px my-8 mx-64 bg-gray-300 border-0 dark:bg-gray-700">
+    <hr class="h-px my-1 mx-10 sm:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
 
     
     <form wire:submit.prevent="submit">
