@@ -1,7 +1,4 @@
 <div>
-    <h2 class="text-4xl font-bold text-center py-8">
-        Grid
-    </h2>
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div class="flex flex-col p-2">
             <div class="flex">
