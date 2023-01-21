@@ -7,6 +7,8 @@ use PDF;
 
 class Invoice extends Component
 {
+    public $num = 4;
+
     public $item_name = '';
     public $price = '0';
     public $vat = '19';
@@ -14,7 +16,12 @@ class Invoice extends Component
     public $quantity = '1';
     public $amount = '0';
 
-    public $num = 4;
+    public $revenue_stamp = '1.000';
+    public $discount = '0.000';
+    public $shipping = '0.000';
+
+    public $items_total = '2800';
+
     public $total = '2800';
 
     protected $rules = [
@@ -22,7 +29,11 @@ class Invoice extends Component
         'price' => 'required|numeric|gte:0|lte:1000000000',
         'vat' => 'required|numeric|between:0,100',
         'price_ev' => 'required|numeric|gte:0|lte:1000000000',
-        'quantity' => 'required|numeric|gte:0|lte:1000000000'
+        'quantity' => 'required|numeric|gte:0|lte:1000000000',
+
+        'revenue_stamp' => 'required|numeric|gte:0|lte:1000000000',
+        'discount' => 'required|numeric|gte:0|lte:1000000000',
+        'shipping' => 'required|numeric|gte:0|lte:1000000000',
     ];
 
 
@@ -96,21 +107,38 @@ class Invoice extends Component
     public function deleteItem($item_num)
     {
         
-        $new_total = floatval($this->total);
+        $new_items_total = floatval($this->items_total);
 
         foreach($this->items as $key=>$item)
         {
             if($item['num'] == $item_num)
             {
-                $new_total = floatval($this->total) - $item['amount'];
+                $new_items_total = floatval($this->items_total) - $item['amount'];
 
                 unset($this->items[$key]);
             }
         }
 
-        $this->total = number_format($new_total,3,'.',''); 
+        $this->items_total = number_format($new_items_total,3,'.',''); 
+
+        #update total
+
+        $this->updateTotal();
     }
     
+    public function updateTotal()
+    {
+        $items_total_float_val = floatval($this->items_total);
+
+        $revenue_stamp_float_val = floatval($this->revenue_stamp);
+        $discount_float_val = floatval($this->discount);
+        $shipping_float_val = floatval($this->shipping);
+
+        $new_total = $this->calculateTotal($items_total_float_val, $revenue_stamp_float_val, $discount_float_val, $shipping_float_val);
+        
+        $this->total = number_format($new_total,3,'.','');
+    }
+
     public function generatePDF()
     {
         //dd("your invoice generated pdf");
@@ -144,9 +172,13 @@ class Invoice extends Component
             'amount' => $this->amount,
         ];
 
-        $new_total = floatval($this->total) + floatval($this->amount);
+        $new_items_total = floatval($this->items_total) + floatval($this->amount);
 
-        $this->total = number_format($new_total,3,'.',''); 
+        $this->items_total = number_format($new_items_total,3,'.',''); 
+
+        #update total
+
+        $this->updateTotal();
 
         #initialize amount back to 0
 
@@ -179,4 +211,8 @@ class Invoice extends Component
         return $price;
     }
     
+    private function calculateTotal($items_total, $revenue_stamp, $discount, $shipping)
+    {
+        return $items_total + $revenue_stamp - $discount + $shipping;
+    }
 }

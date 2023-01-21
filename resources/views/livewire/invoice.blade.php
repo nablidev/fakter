@@ -176,9 +176,8 @@
     </form>
     
     
-    <h2 class="text-4xl font-bold text-center py-8">
-        Items
-    </h2>
+    <hr class="h-px my-4 mx-10 md:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
+
     
     <div class="relative overflow-x-auto shadow-md rounded-lg hidden lg:block">
         <table class="table-fixed w-full border-separate border-black text-base text-center text-black dark:text-gray-400">
@@ -254,7 +253,7 @@
                                 <label for="revenue-stamp" class="block uppercase tracking-wide text-gray-900 text-lg font-bold mb-2 mx-4">revenue stamp</label>
                             </div>
                             <div class="basis-1/2">
-                                <input type="text" id="revenue-stamp" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="1.000">
+                                <input value="{{$revenue_stamp}}" wire:keyup="updateTotal" wire:model="revenue_stamp" type="text" id="revenue-stamp" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="1.000">
                             </div>
                         </div>
                     </div>
@@ -264,7 +263,7 @@
                                 <label for="discount" class="block uppercase tracking-wide text-gray-900 text-lg font-bold mb-2 mx-4">discount</label>
                             </div>
                             <div class="basis-1/2">
-                                <input type="text" id="discount" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="2.000">
+                                <input value="{{$discount}}" wire:keyup="updateTotal" wire:model="discount" type="text" id="discount" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
                             </div>
                         </div>
                     </div>
@@ -274,19 +273,19 @@
                                 <label for="shipping" class="block uppercase tracking-wide text-gray-900 text-lg font-bold mb-2 mx-4">shipping</label>
                             </div>
                             <div class="basis-1/2">
-                                <input type="text" id="shipping" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="7.000">
+                                <input value="{{$shipping}}" wire:keyup="updateTotal" wire:model="shipping" type="text" id="shipping" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
                             </div>
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center">
+                        <div class="flex items-center mb-2">
                             <div class="basis-1/2">
-                                <p class="break-all font-sans text-3xl font-bold mb-2 mx-4">
+                                <p class="font-sans text-3xl font-bold mx-4">
                                     Total =
                                 </p>
                             </div>
                             <div class="basis-1/2">
-                                <p class="break-all font-sans text-3xl font-bold">
+                                <p class="font-sans text-3xl font-bold text-right">
                                     {{$total}}
                                 </p>
                             </div>
