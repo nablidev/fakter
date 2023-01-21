@@ -245,7 +245,7 @@
         <div class="block w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100">
             <div class="flex justify-between">
                 <div class="basis-2/6 flex flex-col justify-center items-start">
-                    <p class="break-all mb-2 text-base font-bold tracking-tight text-gray-900">{{$item['item_name']}}</p>
+                    <p class="break-all mb-2 text-sm font-bold tracking-tight text-gray-900">{{$item['item_name']}}</p>
                     <p class="break-all font-normal text-gray-700">{{$item['price']}}</p>
                 </div>
                 <div class="basis-2/6 flex flex-col justify-center items-center">
