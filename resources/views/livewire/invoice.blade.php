@@ -101,7 +101,7 @@
         </div>
     </div>
 
-    <hr class="h-px my-1 mx-10 sm:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
+    <hr class="h-px my-1 mx-10 md:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
     
     <form wire:submit.prevent="submit">
         <div class="flex flex-wrap mx-3 my-8">
@@ -247,12 +247,54 @@
         </div>
         <div class="w-full px-3 md:basis-1/3 md:order-3">
             <div class="flex justify-center md:justify-end">
-                <div class="divide-y divide-blue">
-                    <p class="break-all font-sans text-3xl font-bold">
-                        Total = {{$total}}
-                    </p>
+                <div class="divide-y-2 divide-black">
+                    <div>
+                        <div class="flex items-center">
+                            <div class="basis-1/2">
+                                <label for="revenue-stamp" class="block uppercase tracking-wide text-gray-900 text-lg font-bold mb-2 mx-4">revenue stamp</label>
+                            </div>
+                            <div class="basis-1/2">
+                                <input type="text" id="revenue-stamp" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="1.000">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <div class="basis-1/2">
+                                <label for="discount" class="block uppercase tracking-wide text-gray-900 text-lg font-bold mb-2 mx-4">discount</label>
+                            </div>
+                            <div class="basis-1/2">
+                                <input type="text" id="discount" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="2.000">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <div class="basis-1/2">
+                                <label for="shipping" class="block uppercase tracking-wide text-gray-900 text-lg font-bold mb-2 mx-4">shipping</label>
+                            </div>
+                            <div class="basis-1/2">
+                                <input type="text" id="shipping" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="7.000">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <div class="basis-1/2">
+                                <p class="break-all font-sans text-3xl font-bold mb-2 mx-4">
+                                    Total =
+                                </p>
+                            </div>
+                            <div class="basis-1/2">
+                                <p class="break-all font-sans text-3xl font-bold">
+                                    {{$total}}
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
-                
+            
             </div>
         </div>
         <div class="w-full px-3 py-3 md:basis-1/3 md:order-2">
