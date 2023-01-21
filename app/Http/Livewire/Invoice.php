@@ -22,7 +22,7 @@ class Invoice extends Component
 
     public $items_total = '2800';
 
-    public $total = '2800';
+    public $total = '2801';
 
     protected $rules = [
         'item_name' => 'required|max:512',
