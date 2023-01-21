@@ -1,5 +1,5 @@
 <div>
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div class="flex flex-col p-2">
             <div class="flex">
                 <div class="basis-1/3">
@@ -36,8 +36,8 @@
             </div>
         </div>
         
-        <div class="sm:col-span-2">
-            <hr class="h-px my-1 mx-10 sm:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
+        <div class="md:col-span-2">
+            <hr class="h-px my-1 mx-10 md:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
         </div>
 
         <div class="flex flex-col p-2">
@@ -102,7 +102,6 @@
     </div>
 
     <hr class="h-px my-1 mx-10 sm:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
-
     
     <form wire:submit.prevent="submit">
         <div class="flex flex-wrap mx-3 my-8">
@@ -154,19 +153,19 @@
         </div>
             
         <div class="flex flex-wrap mx-3 my-0">
-            <div class="sm:basis-1/3 px-3">
+            <div class="md:basis-1/3 px-3">
                 <div class="flex justify-start">
 
                 </div>
             </div>
-            <div class="w-full px-3 sm:basis-1/3 sm:order-3">
-                <div class="flex justify-center sm:justify-end">
+            <div class="w-full px-3 md:basis-1/3 md:order-3">
+                <div class="flex justify-center md:justify-end">
                     <p class="break-all font-sans text-3xl font-bold">
                         {{$amount}}
                     </p>
                 </div>
             </div>
-            <div class="w-full px-3 py-3 sm:basis-1/3 sm:order-2 sm:py-0">
+            <div class="w-full px-3 py-3 md:basis-1/3 md:order-2 md:py-0">
                 <div class="flex justify-center">
                     <button type="submit" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">
                         Add
@@ -181,15 +180,12 @@
         Items
     </h2>
     
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div class="relative overflow-x-auto shadow-md rounded-lg hidden lg:block">
+        <table class="table-fixed w-full border-separate border-black text-base text-center text-black dark:text-gray-400">
+            <thead class="text-lg text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Id
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Item Name
@@ -217,13 +213,10 @@
                         <td class="break-all px-6 py-4">
                             <button wire:click="deleteItem({{$item['num']}})" class="text-red-600 font-bold text-center">x</button>
                         </td>
+
                         <th class="break-all px-6 py-4">
-                            {{$item['num']}}                            
-                        </th>
-                         
-                        <td class="break-all px-6 py-4">
                             {{$item['item_name']}}
-                        </td>
+                        </th>
                         
                         <td class="break-all px-6 py-4">
                             {{$item['price']}}
@@ -247,19 +240,22 @@
     </div>
 
     <div class="flex flex-wrap mx-3 my-3">
-        <div class="px-3 sm:basis-1/3">
+        <div class="px-3 md:basis-1/3">
             <div class="flex justify-start">
 
             </div>
         </div>
-        <div class="w-full px-3 sm:basis-1/3 sm:order-3">
-            <div class="flex justify-center sm:justify-end">
-                <p class="break-all font-sans text-3xl font-bold">
-                    Total = {{$total}}
-                </p>
+        <div class="w-full px-3 md:basis-1/3 md:order-3">
+            <div class="flex justify-center md:justify-end">
+                <div class="divide-y divide-blue">
+                    <p class="break-all font-sans text-3xl font-bold">
+                        Total = {{$total}}
+                    </p>
+                </div>
+                
             </div>
         </div>
-        <div class="w-full px-3 py-3 sm:basis-1/3 sm:order-2">
+        <div class="w-full px-3 py-3 md:basis-1/3 md:order-2">
             <div class="flex justify-center">
                 <button wire:click="generatePDF" class="p-4 rounded-lg bg-red-500 hover:bg-red-600 font-bold text-white shadow-lg shadow-red-300 transition ease-in-out duration-200 translate-10">
                     Generate
