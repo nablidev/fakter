@@ -36,13 +36,13 @@
             </div>
         </div>
         
-        <div class="col-span-2">
+        <div class="sm:col-span-2">
             <hr class="h-px my-1 mx-10 sm:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
         </div>
 
         <div class="flex flex-col p-2">
             <div class="flex justify-center">
-                <p class="text-xl font-bold block uppercase tracking-wide text-gray-700 mb-2">bill from</p>
+                <p class="text-xl font-bold block uppercase tracking-wide text-gray-900 mb-4">bill from</p>
             </div>
             <div class="flex">
                 <div class="basis-1/3">
@@ -72,7 +72,7 @@
 
         <div class="flex flex-col p-2">
             <div class="flex justify-center">
-                <p class="text-xl font-bold block uppercase tracking-wide text-gray-700 mb-2">bill to</p>
+                <p class="text-xl font-bold block uppercase tracking-wide text-gray-900 mb-4">bill to</p>
             </div>
             <div class="flex">
                 <div class="basis-1/3">
@@ -99,7 +99,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 
     <hr class="h-px my-1 mx-10 sm:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
@@ -154,24 +153,24 @@
             </div>
         </div>
             
-        <div class="flex flex-row mx-3 my-0">
-            <div class="basis-1/3 px-3">
+        <div class="flex flex-wrap mx-3 my-0">
+            <div class="sm:basis-1/3 px-3">
                 <div class="flex justify-start">
 
                 </div>
             </div>
-            <div class="basis-1/3 px-3">
+            <div class="w-full px-3 sm:basis-1/3 sm:order-3">
+                <div class="flex justify-center sm:justify-end">
+                    <p class="break-all font-sans text-3xl font-bold">
+                        {{$amount}}
+                    </p>
+                </div>
+            </div>
+            <div class="w-full px-3 py-3 sm:basis-1/3 sm:order-2 sm:py-0">
                 <div class="flex justify-center">
                     <button type="submit" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">
                         Add
                     </button>
-                </div>
-            </div>
-            <div class="basis-1/3 px-3">
-                <div class="flex justify-end">
-                    <p class="break-all font-sans text-3xl font-bold">
-                        {{$amount}}
-                    </p>
                 </div>
             </div>
         </div>
@@ -247,24 +246,24 @@
         </table>
     </div>
 
-    <div class="flex flex-row mx-3 my-3">
-        <div class="basis-1/3 px-3">
+    <div class="flex flex-wrap mx-3 my-3">
+        <div class="px-3 sm:basis-1/3">
             <div class="flex justify-start">
 
             </div>
         </div>
-        <div class="basis-1/3 px-3">
+        <div class="w-full px-3 sm:basis-1/3 sm:order-3">
+            <div class="flex justify-center sm:justify-end">
+                <p class="break-all font-sans text-3xl font-bold">
+                    Total = {{$total}}
+                </p>
+            </div>
+        </div>
+        <div class="w-full px-3 py-3 sm:basis-1/3 sm:order-2">
             <div class="flex justify-center">
                 <button wire:click="generatePDF" class="p-4 rounded-lg bg-red-500 hover:bg-red-600 font-bold text-white shadow-lg shadow-red-300 transition ease-in-out duration-200 translate-10">
                     Generate
                 </button>
-            </div>
-        </div>
-        <div class="basis-1/3 px-3">
-            <div class="flex justify-end">
-                <p class="break-all font-sans text-3xl font-bold">
-                    Total = {{$total}}
-                </p>
             </div>
         </div>
     </div>
