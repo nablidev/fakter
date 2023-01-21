@@ -206,7 +206,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="">
                 @foreach ($items as $item)
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <td class="break-all px-6 py-4">
@@ -237,6 +237,34 @@
             </tbody>
         </table>
     </div>
+
+    {{-- show only on small screens--}}
+
+    <div class="flex flex-col items-center mx-4 space-y-3 md:hidden">
+        @foreach($items as $item)
+        <div class="block w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+            <div class="flex justify-between">
+                <div class="basis-2/6 flex flex-col justify-center items-start">
+                    <p class="break-all mb-2 text-base font-bold tracking-tight text-gray-900">{{$item['item_name']}}</p>
+                    <p class="break-all font-normal text-gray-700">{{$item['price']}}</p>
+                </div>
+                <div class="basis-2/6 flex flex-col justify-center items-center">
+                    <p class="mb-2 font-normal text-gray-700">{{$item['vat']}}%</p>
+                    <p class="break-all font-normal text-gray-700">{{$item['price_ev']}}</p>
+                </div>
+                <div class="basis-1/6 flex flex-col justify-center items-center">
+                    <p class="break-all font-medium text-gray-700"><span class="font-normal">x </span>{{$item['quantity']}}</p>
+                </div>
+                <div class="basis-1/6 flex flex-col justify-center items-end">
+                    <p class="break-all font-bold text-black">{{$item['amount']}}</p>
+                </div>
+            </div>
+            
+        </div>
+        @endforeach
+    </div>
+
+    {{-- --------------------------- --}}
 
     <div class="flex flex-wrap mx-3 my-3">
         <div class="px-3 md:basis-1/3">
