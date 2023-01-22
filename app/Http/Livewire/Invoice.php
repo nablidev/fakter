@@ -33,9 +33,9 @@ class Invoice extends Component
     public $discount = '0.000';
     public $shipping = '0.000';
 
-    public $items_total = '2800';
+    public $items_total = '2800.000';
 
-    public $total = '2801';
+    public $total = '2801.000';
 
     protected $rules = [
         'document_no' => 'required|numeric|between:0,1000000000',

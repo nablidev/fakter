@@ -280,19 +280,22 @@
             <div class="flex justify-center md:justify-end">
                 <div class="divide-y-2 divide-black">
                     <div>
-                        <div class="flex items-center">
+
+                    </div>
+                    <div>
+                        <div class="flex items-center my-4">
                             <div class="basis-2/3">
-                                <label for="revenue-stamp" class="block uppercase tracking-wide text-gray-900 text-base font-bold mb-2 mx-4">revenue stamp</label>
+                                <label for="revenue-stamp" class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">revenue stamp</label>
                             </div>
                             <div class="basis-1/3">
-                                <p class="font-bold text-right text-xl">{{$revenue_stamp}}</p>
+                                <p class="font-bold tracking-wide text-right text-xl ">{{$revenue_stamp}}</p>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div class="flex items-center">
                             <div class="basis-1/2">
-                                <label for="discount" class="block uppercase tracking-wide text-gray-900 text-base font-bold mb-2 mx-4">discount</label>
+                                <label for="discount" class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">discount</label>
                             </div>
                             <div class="basis-1/2">
                                 <input value="{{$discount}}" wire:keyup="updateTotal" wire:model="discount" type="text" id="discount" class="appearance-none text-right block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
@@ -302,7 +305,7 @@
                     <div>
                         <div class="flex items-center">
                             <div class="basis-1/2">
-                                <label for="shipping" class="block uppercase tracking-wide text-gray-900 text-base font-bold mb-2 mx-4">shipping</label>
+                                <label for="shipping" class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">shipping</label>
                             </div>
                             <div class="basis-1/2">
                                 <input value="{{$shipping}}" wire:keyup="updateTotal" wire:model="shipping" type="text" id="shipping" class="appearance-none text-right block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
