@@ -179,7 +179,7 @@
     <hr class="h-px my-4 mx-10 md:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
 
     
-    <div class="relative overflow-x-auto shadow-md rounded-lg hidden lg:block">
+    <div class="relative overflow-x-auto shadow-md rounded-lg hidden md:block">
         <table class="table-fixed w-full border-separate border-black text-base text-center text-black dark:text-gray-400">
             <thead class="text-lg text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -244,20 +244,24 @@
         @foreach($items as $item)
         <div class="block w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100">
             <div class="flex justify-between">
-                <div class="basis-2/6 flex flex-col justify-center items-start">
+                <div class="basis-1/7 flex flex-col justify-center items-end">
+                    <button wire:click="deleteItem({{$item['num']}})" class="text-red-600 font-bold text-center">x</button>
+                </div>
+                <div class="basis-2/7 flex flex-col justify-center items-start">
                     <p class="break-all mb-2 text-sm font-bold tracking-tight text-gray-900">{{$item['item_name']}}</p>
                     <p class="break-all font-normal text-gray-700">{{$item['price']}}</p>
                 </div>
-                <div class="basis-2/6 flex flex-col justify-center items-center">
+                <div class="basis-2/7 flex flex-col justify-center items-center">
                     <p class="mb-2 font-normal text-gray-700">{{$item['vat']}}%</p>
                     <p class="break-all font-normal text-gray-700">{{$item['price_ev']}}</p>
                 </div>
-                <div class="basis-1/6 flex flex-col justify-center items-center">
+                <div class="basis-1/7 flex flex-col justify-center items-center">
                     <p class="break-all font-medium text-gray-700"><span class="font-normal">x </span>{{$item['quantity']}}</p>
                 </div>
-                <div class="basis-1/6 flex flex-col justify-center items-end">
+                <div class="basis-1/7 flex flex-col justify-center items-end">
                     <p class="break-all font-bold text-black">{{$item['amount']}}</p>
                 </div>
+                
             </div>
             
         </div>
