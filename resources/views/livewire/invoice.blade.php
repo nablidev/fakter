@@ -6,12 +6,12 @@
                     <label for="type" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Type</label>
                 </div>
                 <div class="basis-2/3">
-                    <select class="form-select block w-full py-3 px-4 text-gray-700 bg-white border border-gray-400 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2">
-                        <option selected value="Invoice">Invoice</option>
-                        <option value="Credit Note">Credit Note</option>
-                        <option value="Quote">Quote</option>
-                        <option value="Purchase Order">Purchase Order</option>
-                        <option value="Receipt">Receipt</option>    
+                    <select wire:model="document_type" class="form-select block w-full py-3 px-4 text-gray-700 bg-white border border-gray-400 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2">
+                        <option value="invoice">Invoice</option>
+                        <option value="credit_note">Credit Note</option>
+                        <option value="quote">Quote</option>
+                        <option value="purchase_order">Purchase Order</option>
+                        <option value="receipt">Receipt</option>    
                     </select>
                 </div>
             </div>
@@ -20,18 +20,18 @@
         <div class="flex flex-col p-2">
             <div class="flex">
                 <div class="basis-1/3">
-                    <label for="invoice-no" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">No</label>
+                    <label for="document-no" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">No</label>
                 </div>
                 <div class="basis-2/3">
-                    <input type="text" id="invoice-no" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="123456">
+                    <input value="{{$document_no}}" wire:model="document_no" type="text" id="document-no" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="123456">
                 </div>
             </div>
             <div class="flex">
                 <div class="basis-1/3">
-                    <label for="invoice-date" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Date</label>
+                    <label for="document-date" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Date</label>
                 </div>
                 <div class="basis-2/3">
-                    <input type="date" id="invoice-date" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="01/02/1234">
+                    <input value="2011-09-29" wire:model="document_date" type="date" id="document-date" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="01/02/1234">
                 </div>
             </div>
         </div>

@@ -2,11 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use PDF;
+use Carbon\Carbon;
+use Livewire\Component;
 
 class Invoice extends Component
 {
+    public $document_type = 'invoice';
+
+    public $document_no = 0;
+    
+    public $document_date;
+
     public $num = 4;
 
     public $item_name = '';
@@ -190,6 +197,14 @@ class Invoice extends Component
     {
         #validate all field on every update
         $this->validate();
+    }
+
+    public function mount()
+    {
+        $this->document_no = mt_rand(0, 1000000);
+        
+        #because values passed and received from html are in the format 'Y-m-d'
+        $this->document_date = Carbon::now()->format('Y-m-d');
     }
 
     public function render()
