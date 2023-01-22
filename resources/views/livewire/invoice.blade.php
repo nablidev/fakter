@@ -49,7 +49,7 @@
                     <label for="name" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Name</label>
                 </div>
                 <div class="basis-2/3">
-                    <input type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
+                    <input value="{{$from_name}}" wire:model="from_name" type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
                 </div>
             </div>
             <div class="flex">
@@ -57,7 +57,7 @@
                     <label for="address" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Address</label>
                 </div>
                 <div class="basis-2/3">
-                    <input type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
+                    <input value="{{$from_address}}" wire:model="from_address" type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
                 </div>
             </div>
             <div class="flex">
@@ -65,7 +65,7 @@
                     <label for="fiscal-code" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Fiscal Code</label>
                 </div>
                 <div class="basis-2/3">
-                    <input type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
+                    <input value="{{$from_fiscal_code}}" wire:model="from_fiscal_code" type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                     <label for="name" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Name</label>
                 </div>
                 <div class="basis-2/3">
-                    <input type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
+                    <input value="{{$to_name}}" wire:model="to_name" type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
                 </div>
             </div>
             <div class="flex">
@@ -87,7 +87,7 @@
                     <label for="address" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Address</label>
                 </div>
                 <div class="basis-2/3">
-                    <input type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
+                    <input value="{{$to_address}}" wire:model="to_address" type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
                 </div>
             </div>
             <div class="flex">
@@ -95,7 +95,7 @@
                     <label for="fiscal-code" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Fiscal Code</label>
                 </div>
                 <div class="basis-2/3">
-                    <input type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
+                    <input value="{{$to_fiscal_code}}" wire:model="to_fiscal_code" type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
                 </div>
             </div>
         </div>
@@ -281,31 +281,31 @@
                 <div class="divide-y-2 divide-black">
                     <div>
                         <div class="flex items-center">
-                            <div class="basis-1/2">
-                                <label for="revenue-stamp" class="block uppercase tracking-wide text-gray-900 text-lg font-bold mb-2 mx-4">revenue stamp</label>
+                            <div class="basis-2/3">
+                                <label for="revenue-stamp" class="block uppercase tracking-wide text-gray-900 text-base font-bold mb-2 mx-4">revenue stamp</label>
                             </div>
-                            <div class="basis-1/2">
-                                <input value="{{$revenue_stamp}}" wire:keyup="updateTotal" wire:model="revenue_stamp" type="text" id="revenue-stamp" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="1.000">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex items-center">
-                            <div class="basis-1/2">
-                                <label for="discount" class="block uppercase tracking-wide text-gray-900 text-lg font-bold mb-2 mx-4">discount</label>
-                            </div>
-                            <div class="basis-1/2">
-                                <input value="{{$discount}}" wire:keyup="updateTotal" wire:model="discount" type="text" id="discount" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
+                            <div class="basis-1/3">
+                                <p class="font-bold text-right text-xl">{{$revenue_stamp}}</p>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div class="flex items-center">
                             <div class="basis-1/2">
-                                <label for="shipping" class="block uppercase tracking-wide text-gray-900 text-lg font-bold mb-2 mx-4">shipping</label>
+                                <label for="discount" class="block uppercase tracking-wide text-gray-900 text-base font-bold mb-2 mx-4">discount</label>
                             </div>
                             <div class="basis-1/2">
-                                <input value="{{$shipping}}" wire:keyup="updateTotal" wire:model="shipping" type="text" id="shipping" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
+                                <input value="{{$discount}}" wire:keyup="updateTotal" wire:model="discount" type="text" id="discount" class="appearance-none text-right block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <div class="basis-1/2">
+                                <label for="shipping" class="block uppercase tracking-wide text-gray-900 text-base font-bold mb-2 mx-4">shipping</label>
+                            </div>
+                            <div class="basis-1/2">
+                                <input value="{{$shipping}}" wire:keyup="updateTotal" wire:model="shipping" type="text" id="shipping" class="appearance-none text-right block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
                             </div>
                         </div>
                     </div>

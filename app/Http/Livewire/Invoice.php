@@ -9,10 +9,16 @@ use Livewire\Component;
 class Invoice extends Component
 {
     public $document_type = 'invoice';
-
     public $document_no = 0;
-    
     public $document_date;
+
+    public $from_name = '';
+    public $from_address = '';
+    public $from_fiscal_code = '';
+
+    public $to_name = '';
+    public $to_address = '';
+    public $to_fiscal_code = '';
 
     public $num = 4;
 
@@ -32,7 +38,17 @@ class Invoice extends Component
     public $total = '2801';
 
     protected $rules = [
-        'item_name' => 'required|max:512',
+        'document_no' => 'required|numeric|between:0,1000000000',
+
+        'from_name' => 'max:128',
+        'from_address' => 'max:128',
+        'from_fiscal_code' => 'max:128',
+
+        'to_name' => 'max:128',
+        'to_address' => 'max:128',
+        'to_fiscal_code' => 'max:128',
+
+        'item_name' => 'required|max:256',
         'price' => 'required|numeric|gte:0|lte:1000000000',
         'vat' => 'required|numeric|between:0,100',
         'price_ev' => 'required|numeric|gte:0|lte:1000000000',
@@ -201,7 +217,7 @@ class Invoice extends Component
 
     public function mount()
     {
-        $this->document_no = mt_rand(0, 1000000);
+        $this->document_no = mt_rand(0, 1000000000);
         
         #because values passed and received from html are in the format 'Y-m-d'
         $this->document_date = Carbon::now()->format('Y-m-d');
