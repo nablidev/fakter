@@ -112,9 +112,9 @@ class Invoice extends Component
     {
         $price_ev_float_value = floatval($this->price_ev);
 
-        $vat_float_value = floatval($this->item_vat_percent);
+        $item_vat_percent_float_value = floatval($this->item_vat_percent);
 
-        $new_price = $this->calculatePriceFromPriceEVAndVAT($price_ev_float_value, $vat_float_value);
+        $new_price = $this->calculatePriceFromPriceEVAndVAT($price_ev_float_value, $item_vat_percent_float_value);
 
         $this->price = number_format($new_price, 3, '.', '');
 
@@ -126,9 +126,9 @@ class Invoice extends Component
         
         $price_float_value = floatval($this->price);
 
-        $vat_float_value = floatval($this->item_vat_percent);
+        $item_vat_percent_float_value = floatval($this->item_vat_percent);
 
-        $new_price_ev = $this->calculatePriceEVFromPriceAndVAT($price_float_value, $vat_float_value);
+        $new_price_ev = $this->calculatePriceEVFromPriceAndVAT($price_float_value, $item_vat_percent_float_value);
 
         $this->price_ev = number_format($new_price_ev, 3, '.', '');
 
