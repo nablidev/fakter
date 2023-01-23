@@ -125,11 +125,11 @@
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
                 <div class="flex flex-col items-center">
-                    <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="vat">
+                    <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="item-vat-percent">
                         VAT %
                     </label>
-                    <input value="{{$vat}}" wire:keyup="updatePriceAndAmount" wire:model="vat" id="vat" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
-                    @error('vat') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
+                    <input value="{{$item_vat_percent}}" wire:keyup="updatePriceAndAmount" wire:model="item_vat_percent" id="item-vat-percent" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
+                    @error('item_vat_percent') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
             <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
@@ -221,7 +221,7 @@
                             {{$item['price']}}
                         </td>
                         <td class="break-all px-6 py-4">
-                            {{$item['vat']}}%
+                            {{$item['item_vat_percent']}}%
                         </td>
                         <td class="break-all px-6 py-4">
                             {{$item['price_ev']}}
@@ -252,7 +252,7 @@
                     <p class="break-all font-normal text-gray-700">{{$item['price']}}</p>
                 </div>
                 <div class="basis-2/7 flex flex-col justify-center items-center">
-                    <p class="mb-2 font-normal text-gray-700">{{$item['vat']}}%</p>
+                    <p class="mb-2 font-normal text-gray-700">{{$item['item_vat_percent']}}%</p>
                     <p class="break-all font-normal text-gray-700">{{$item['price_ev']}}</p>
                 </div>
                 <div class="basis-1/7 flex flex-col justify-center items-center">
@@ -298,17 +298,7 @@
                                 <p class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">vat</p>
                             </div>
                             <div class="basis-1/3">
-                                <p class="font-bold tracking-wide text-right text-xl ">{{$total_vat}} %</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex items-center my-4">
-                            <div class="basis-2/3">
-                                <p class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">items total</p>
-                            </div>
-                            <div class="basis-1/3">
-                                <p class="font-bold tracking-wide text-right text-xl ">{{$items_total}}</p>
+                                <p class="font-bold tracking-wide text-right text-xl ">{{$total_vat}}</p>
                             </div>
                         </div>
                     </div>

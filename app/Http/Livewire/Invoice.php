@@ -24,7 +24,8 @@ class Invoice extends Component
 
     public $item_name = '';
     public $price = '0.000';
-    public $vat = '19';
+    #public $vat = '19';
+    public $item_vat_percent = '19';
     public $price_ev = '0.000';
     public $quantity = '1';
     public $amount_ev = '0.000';
@@ -34,7 +35,7 @@ class Invoice extends Component
     public $discount = '0.000';
 
     public $items_total_ev = '2352.941';
-    public $total_vat = '19.00';
+    public $total_vat = '447.059';
     public $items_total = '2800.000';
 
     public $total = '2801.000';
@@ -52,7 +53,7 @@ class Invoice extends Component
 
         'item_name' => 'required|max:256',
         'price' => 'required|numeric|gte:0|lte:1000000000',
-        'vat' => 'required|numeric|between:0,100',
+        'item_vat_percent' => 'required|numeric|between:0,100',
         'price_ev' => 'required|numeric|gte:0|lte:1000000000',
         'quantity' => 'required|numeric|gte:0|lte:1000000000',
 
@@ -66,7 +67,7 @@ class Invoice extends Component
             'num' => 1,
             'item_name' => 'Apple MacBook Pro 17', 
             'price' => '1500', 
-            'vat' => '19', 
+            'item_vat_percent' => '19', 
             'price_ev' => '1260.504', 
             'quantity' => '1',
             'amount_ev' => '1260.504', 
@@ -76,7 +77,7 @@ class Invoice extends Component
             'num' => 2,
             'item_name' => 'Samsung Galaxy', 
             'price' => '700', 
-            'vat' => '19', 
+            'item_vat_percent' => '19', 
             'price_ev' => '588.235', 
             'quantity' => '1', 
             'amount_ev' => '588.235',
@@ -86,7 +87,7 @@ class Invoice extends Component
             'num' => 3,
             'item_name' => 'Xiomi Redmi 7', 
             'price' => '600', 
-            'vat' => '19', 
+            'item_vat_percent' => '19', 
             'price_ev' => '504.202', 
             'quantity' => '1', 
             'amount_ev' => '504.202',
@@ -111,7 +112,7 @@ class Invoice extends Component
     {
         $price_ev_float_value = floatval($this->price_ev);
 
-        $vat_float_value = floatval($this->vat);
+        $vat_float_value = floatval($this->item_vat_percent);
 
         $new_price = $this->calculatePriceFromPriceEVAndVAT($price_ev_float_value, $vat_float_value);
 
@@ -125,7 +126,7 @@ class Invoice extends Component
         
         $price_float_value = floatval($this->price);
 
-        $vat_float_value = floatval($this->vat);
+        $vat_float_value = floatval($this->item_vat_percent);
 
         $new_price_ev = $this->calculatePriceEVFromPriceAndVAT($price_float_value, $vat_float_value);
 
@@ -161,7 +162,7 @@ class Invoice extends Component
 
         $this->items_total = number_format($new_items_total, 3, '.', ''); 
 
-        $this->total_vat = number_format($new_total_vat, 2, '.', '');
+        $this->total_vat = number_format($new_total_vat, 3, '.', '');
 
         #update total
 
@@ -177,7 +178,7 @@ class Invoice extends Component
 
         $new_total = $this->calculateTotal($items_total_float_val, $revenue_stamp_float_val, $discount_float_val);
         
-        $this->total = number_format($new_total,3,'.','');
+        $this->total = number_format($new_total, 3, '.', '');
     }
 
     public function generatePDF()
@@ -194,7 +195,7 @@ class Invoice extends Component
           
         $pdfContent = PDF::loadView('myPDF', $viewData)->output();
 
-        return response()->streamDownload(fn () => print($pdfContent),"filename.pdf");
+        return response()->streamDownload(fn () => print($pdfContent), "filename.pdf");
 
     }
 
@@ -207,7 +208,7 @@ class Invoice extends Component
             'num' => $this->num++,
             'item_name' => $this->item_name, 
             'price' => $this->price, 
-            'vat' => $this->vat, 
+            'item_vat_percent' => $this->item_vat_percent, 
             'price_ev' => $this->price_ev, 
             'quantity' => $this->quantity, 
             'amount_ev' => $this->amount_ev,
@@ -226,7 +227,7 @@ class Invoice extends Component
 
         $this->items_total = number_format($new_items_total, 3, '.', '');
         
-        $this->total_vat = number_format($new_total_vat, 2, '.', '');
+        $this->total_vat = number_format($new_total_vat, 3, '.', '');
 
         #update total
 
@@ -271,7 +272,13 @@ class Invoice extends Component
         return $price;
     }
 
+
     private function calculateVATFromPriceAndPriceEV($price, $price_ev)
+    {
+        return $price - $price_ev;
+    }
+
+    private function calculateVATPercentageFromPriceAndPriceEV($price, $price_ev)
     {
         if($price == 0 or $price_ev == 0)
         {
