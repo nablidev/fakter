@@ -23,16 +23,19 @@ class Invoice extends Component
     public $num = 4;
 
     public $item_name = '';
-    public $price = '0';
+    public $price = '0.000';
     public $vat = '19';
-    public $price_ev = '0';
+    public $price_ev = '0.000';
     public $quantity = '1';
-    public $amount = '0';
+    public $amount_ev = '0.000';
+    public $amount = '0.000';
 
     public $revenue_stamp = '1.000';
     public $discount = '0.000';
     public $shipping = '0.000';
 
+    public $items_total_ev = '2352.941';
+    public $total_vat = '19.00';
     public $items_total = '2800.000';
 
     public $total = '2801.000';
@@ -67,7 +70,8 @@ class Invoice extends Component
             'price' => '1500', 
             'vat' => '19', 
             'price_ev' => '1260.504', 
-            'quantity' => '1', 
+            'quantity' => '1',
+            'amount_ev' => '1260.504', 
             'amount' => '1500'
         ],
         [   
@@ -77,6 +81,7 @@ class Invoice extends Component
             'vat' => '19', 
             'price_ev' => '588.235', 
             'quantity' => '1', 
+            'amount_ev' => '588.235',
             'amount' => '700'
         ],
         [   
@@ -86,6 +91,7 @@ class Invoice extends Component
             'vat' => '19', 
             'price_ev' => '504.202', 
             'quantity' => '1', 
+            'amount_ev' => '504.202',
             'amount' => '600'
         ],
     ];
@@ -94,9 +100,13 @@ class Invoice extends Component
 
     public function updateAmount()
     {
-        $newAmount = floatval($this->price) * floatval($this->quantity);
+        $new_amount_ev = floatval($this->price_ev) * floatval($this->quantity);
 
-        $this->amount = number_format($newAmount, 3, '.', '');
+        $new_amount = floatval($this->price) * floatval($this->quantity);
+
+        $this->amount_ev = number_format($new_amount_ev, 3, '.', '');
+
+        $this->amount = number_format($new_amount, 3, '.', '');
     }
 
     public function updatePriceAndAmount()
@@ -129,20 +139,31 @@ class Invoice extends Component
 
     public function deleteItem($item_num)
     {
+        $new_items_total_ev = floatval($this->items_total_ev);
         
         $new_items_total = floatval($this->items_total);
+
+        $new_total_vat = floatval($this->total_vat);
 
         foreach($this->items as $key=>$item)
         {
             if($item['num'] == $item_num)
             {
+                $new_items_total_ev = floatval($this->items_total_ev) - $item['amount_ev'];
+
                 $new_items_total = floatval($this->items_total) - $item['amount'];
+
+                $new_total_vat = $this->calculateVATFromPriceAndPriceEV($new_items_total, $new_items_total_ev);
 
                 unset($this->items[$key]);
             }
         }
 
-        $this->items_total = number_format($new_items_total,3,'.',''); 
+        $this->items_total_ev = number_format($new_items_total_ev, 3, '.', ''); 
+
+        $this->items_total = number_format($new_items_total, 3, '.', ''); 
+
+        $this->total_vat = number_format($new_total_vat, 2, '.', '');
 
         #update total
 
@@ -192,12 +213,23 @@ class Invoice extends Component
             'vat' => $this->vat, 
             'price_ev' => $this->price_ev, 
             'quantity' => $this->quantity, 
+            'amount_ev' => $this->amount_ev,
             'amount' => $this->amount,
         ];
 
+
+
+        $new_items_total_ev = floatval($this->items_total_ev) + floatval($this->amount_ev);
+
         $new_items_total = floatval($this->items_total) + floatval($this->amount);
 
-        $this->items_total = number_format($new_items_total,3,'.',''); 
+        $new_total_vat = $this->calculateVATFromPriceAndPriceEV($new_items_total, $new_items_total_ev);
+
+        $this->items_total_ev = number_format($new_items_total_ev, 3, '.', ''); 
+
+        $this->items_total = number_format($new_items_total, 3, '.', '');
+        
+        $this->total_vat = number_format($new_total_vat, 2, '.', '');
 
         #update total
 
@@ -240,6 +272,18 @@ class Invoice extends Component
         $price = ($price_ev / 100) * $vat + $price_ev;
 
         return $price;
+    }
+
+    private function calculateVATFromPriceAndPriceEV($price, $price_ev)
+    {
+        if($price == 0 or $price_ev == 0)
+        {
+            return 0;
+        }
+
+        $vat = ($price - $price_ev) * 100 / $price_ev;
+
+        return $vat;
     }
     
     private function calculateTotal($items_total, $revenue_stamp, $discount, $shipping)

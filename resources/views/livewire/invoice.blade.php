@@ -285,7 +285,37 @@
                     <div>
                         <div class="flex items-center my-4">
                             <div class="basis-2/3">
-                                <label for="revenue-stamp" class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">revenue stamp</label>
+                                <p class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">items total exc vat</p>
+                            </div>
+                            <div class="basis-1/3">
+                                <p class="font-bold tracking-wide text-right text-xl ">{{$items_total_ev}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center my-4">
+                            <div class="basis-2/3">
+                                <p class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">vat</p>
+                            </div>
+                            <div class="basis-1/3">
+                                <p class="font-bold tracking-wide text-right text-xl ">{{$total_vat}} %</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center my-4">
+                            <div class="basis-2/3">
+                                <p class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">items total</p>
+                            </div>
+                            <div class="basis-1/3">
+                                <p class="font-bold tracking-wide text-right text-xl ">{{$items_total}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center my-4">
+                            <div class="basis-2/3">
+                                <p class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">revenue stamp</p>
                             </div>
                             <div class="basis-1/3">
                                 <p class="font-bold tracking-wide text-right text-xl ">{{$revenue_stamp}}</p>
