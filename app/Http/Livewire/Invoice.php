@@ -196,9 +196,9 @@ class Invoice extends Component
         ];
           
         $pdfContent = PDF::loadView('myPDF', $viewData)->output();
+
         return response()->streamDownload(fn () => print($pdfContent),"filename.pdf");
 
-        
     }
 
     public function submit()
