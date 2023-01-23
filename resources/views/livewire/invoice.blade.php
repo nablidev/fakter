@@ -333,16 +333,6 @@
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center">
-                            <div class="basis-1/2">
-                                <label for="shipping" class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">shipping</label>
-                            </div>
-                            <div class="basis-1/2">
-                                <input value="{{$shipping}}" wire:keyup="updateTotal" wire:model="shipping" type="text" id="shipping" class="appearance-none text-right block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
                         <div class="flex items-center mb-2">
                             <div class="basis-1/2">
                                 <p class="font-sans text-3xl font-bold mx-4">
@@ -355,10 +345,8 @@
                                 </p>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
-            
             </div>
         </div>
         <div class="w-full px-3 py-3 md:basis-1/3 md:order-2">

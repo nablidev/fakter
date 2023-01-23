@@ -32,7 +32,6 @@ class Invoice extends Component
 
     public $revenue_stamp = '1.000';
     public $discount = '0.000';
-    public $shipping = '0.000';
 
     public $items_total_ev = '2352.941';
     public $total_vat = '19.00';
@@ -59,7 +58,6 @@ class Invoice extends Component
 
         'revenue_stamp' => 'required|numeric|gte:0|lte:1000000000',
         'discount' => 'required|numeric|gte:0|lte:1000000000',
-        'shipping' => 'required|numeric|gte:0|lte:1000000000',
     ];
 
 
@@ -176,9 +174,8 @@ class Invoice extends Component
 
         $revenue_stamp_float_val = floatval($this->revenue_stamp);
         $discount_float_val = floatval($this->discount);
-        $shipping_float_val = floatval($this->shipping);
 
-        $new_total = $this->calculateTotal($items_total_float_val, $revenue_stamp_float_val, $discount_float_val, $shipping_float_val);
+        $new_total = $this->calculateTotal($items_total_float_val, $revenue_stamp_float_val, $discount_float_val);
         
         $this->total = number_format($new_total,3,'.','');
     }
@@ -286,8 +283,8 @@ class Invoice extends Component
         return $vat;
     }
     
-    private function calculateTotal($items_total, $revenue_stamp, $discount, $shipping)
+    private function calculateTotal($items_total, $revenue_stamp, $discount)
     {
-        return $items_total + $revenue_stamp - $discount + $shipping;
+        return $items_total + $revenue_stamp - $discount;
     }
 }
