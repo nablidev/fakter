@@ -24,6 +24,7 @@
                 </div>
                 <div class="basis-2/3">
                     <input value="{{$document_no}}" wire:model="document_no" type="text" id="document-no" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="123456">
+                    @error('document_no') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
             <div class="flex">
@@ -31,7 +32,7 @@
                     <label for="document-date" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Date</label>
                 </div>
                 <div class="basis-2/3">
-                    <input value="2011-09-29" wire:model="document_date" type="date" id="document-date" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="01/02/1234">
+                    <input wire:model="document_date" type="date" id="document-date" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="01/02/1234">
                 </div>
             </div>
         </div>
@@ -50,6 +51,7 @@
                 </div>
                 <div class="basis-2/3">
                     <input value="{{$from_name}}" wire:model="from_name" type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
+                    @error('from_name') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
             <div class="flex">
@@ -58,6 +60,7 @@
                 </div>
                 <div class="basis-2/3">
                     <input value="{{$from_address}}" wire:model="from_address" type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
+                    @error('from_address') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
             <div class="flex">
@@ -66,6 +69,7 @@
                 </div>
                 <div class="basis-2/3">
                     <input value="{{$from_fiscal_code}}" wire:model="from_fiscal_code" type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
+                    @error('from_fiscal_code') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
         </div>
@@ -80,6 +84,7 @@
                 </div>
                 <div class="basis-2/3">
                     <input value="{{$to_name}}" wire:model="to_name" type="text" id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="John Doe">
+                    @error('to_name') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
             <div class="flex">
@@ -88,6 +93,7 @@
                 </div>
                 <div class="basis-2/3">
                     <input value="{{$to_address}}" wire:model="to_address" type="text" id="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="California Street 1234">
+                    @error('to_address') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
             <div class="flex">
@@ -96,6 +102,7 @@
                 </div>
                 <div class="basis-2/3">
                     <input value="{{$to_fiscal_code}}" wire:model="to_fiscal_code" type="text" id="fiscal-code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2" placeholder="abcde12345">
+                    @error('to_fiscal_code') <span class="error text-red-500 text-base font-bold">{{$message}}</span> @enderror
                 </div>
             </div>
         </div>

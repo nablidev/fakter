@@ -130,10 +130,17 @@ class Invoice extends Component
     {
         
         $this->validate();
-    
+
         $viewData = [
-            'title' => 'MY INVOICE',
-            'date' => date('m/d/Y'),
+            'document_type' => $this->document_type,
+            'document_no' => $this->document_no,
+            'document_date' => Carbon::parse($this->document_date)->format('d/m/Y'),
+            'from_name' => $this->from_name,
+            'from_address' => $this->from_address,
+            'from_fiscal_code' => $this->from_fiscal_code,
+            'to_name' => $this->to_name,
+            'to_address' => $this->to_address,
+            'to_fiscal_code' => $this->to_fiscal_code,
             'items' => $this->items,
         ];
           
@@ -151,7 +158,7 @@ class Invoice extends Component
         $this->items[] = $item_to_add;
 
 
-        
+
         $new_items_total_ev = floatval($this->items_total_ev) + floatval($item_to_add['amount_ev']);
 
         $new_items_total = floatval($this->items_total) + floatval($item_to_add['amount']);
@@ -172,7 +179,8 @@ class Invoice extends Component
 
     public function updated()
     {
-        
+        #validate all field on every update
+        $this->validate();
     }
 
     public function mount()
