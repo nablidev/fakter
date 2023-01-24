@@ -20,17 +20,7 @@ class Invoice extends Component
     public $to_address = '';
     public $to_fiscal_code = '';
 
-    public $num = 4;
-
-    public $item_name = '';
-    public $price = '0.000';
-    #public $vat = '19';
-    public $item_vat_percent = '19';
-    public $price_ev = '0.000';
-    public $quantity = '1';
-    public $amount_ev = '0.000';
-    public $amount = '0.000';
-
+    
     public $revenue_stamp = '1.000';
     public $discount = '0.000';
 
@@ -51,16 +41,11 @@ class Invoice extends Component
         'to_address' => 'max:128',
         'to_fiscal_code' => 'max:128',
 
-        'item_name' => 'required|max:256',
-        'price' => 'required|numeric|gte:0|lte:1000000000',
-        'item_vat_percent' => 'required|numeric|between:0,100',
-        'price_ev' => 'required|numeric|gte:0|lte:1000000000',
-        'quantity' => 'required|numeric|gte:0|lte:1000000000',
-
         'revenue_stamp' => 'required|numeric|gte:0|lte:1000000000',
         'discount' => 'required|numeric|gte:0|lte:1000000000',
     ];
 
+    protected $listeners = ['itemAdded' => 'addItem'];
 
     public $items = [
         [   
@@ -95,46 +80,6 @@ class Invoice extends Component
         ],
     ];
 
-    
-
-    public function updateAmount()
-    {
-        $new_amount_ev = floatval($this->price_ev) * floatval($this->quantity);
-
-        $new_amount = floatval($this->price) * floatval($this->quantity);
-
-        $this->amount_ev = number_format($new_amount_ev, 3, '.', '');
-
-        $this->amount = number_format($new_amount, 3, '.', '');
-    }
-
-    public function updatePriceAndAmount()
-    {
-        $price_ev_float_value = floatval($this->price_ev);
-
-        $item_vat_percent_float_value = floatval($this->item_vat_percent);
-
-        $new_price = $this->calculatePriceFromPriceEVAndVAT($price_ev_float_value, $item_vat_percent_float_value);
-
-        $this->price = number_format($new_price, 3, '.', '');
-
-        $this->updateAmount();
-    }
-
-    public function updatePriceEVAndAmount()
-    {
-        
-        $price_float_value = floatval($this->price);
-
-        $item_vat_percent_float_value = floatval($this->item_vat_percent);
-
-        $new_price_ev = $this->calculatePriceEVFromPriceAndVAT($price_float_value, $item_vat_percent_float_value);
-
-        $this->price_ev = number_format($new_price_ev, 3, '.', '');
-
-        $this->updateAmount();
-
-    }
 
     public function deleteItem($item_num)
     {
@@ -183,10 +128,7 @@ class Invoice extends Component
 
     public function generatePDF()
     {
-        //dd("your invoice generated pdf");
-        //return redirect()->to('/generate-pdf');
-
-        
+    
         $viewData = [
             'title' => 'MY INVOICE',
             'date' => date('m/d/Y'),
@@ -199,27 +141,18 @@ class Invoice extends Component
 
     }
 
-    public function submit()
+
+
+    public function addItem($item_to_add)
     {
         
-        $validatedData = $this->validate();
-
-        $this->items[] = [
-            'num' => $this->num++,
-            'item_name' => $this->item_name, 
-            'price' => $this->price, 
-            'item_vat_percent' => $this->item_vat_percent, 
-            'price_ev' => $this->price_ev, 
-            'quantity' => $this->quantity, 
-            'amount_ev' => $this->amount_ev,
-            'amount' => $this->amount,
-        ];
+        $this->items[] = $item_to_add;
 
 
 
-        $new_items_total_ev = floatval($this->items_total_ev) + floatval($this->amount_ev);
+        $new_items_total_ev = floatval($this->items_total_ev) + floatval($item_to_add['amount_ev']);
 
-        $new_items_total = floatval($this->items_total) + floatval($this->amount);
+        $new_items_total = floatval($this->items_total) + floatval($item_to_add['amount']);
 
         $new_total_vat = $this->calculateVATFromPriceAndPriceEV($new_items_total, $new_items_total_ev);
 
@@ -233,9 +166,7 @@ class Invoice extends Component
 
         $this->updateTotal();
 
-        #initialize amount back to 0
-
-        #maybe initialize other variables
+        
         
     }
 
@@ -256,20 +187,6 @@ class Invoice extends Component
     public function render()
     {
         return view('livewire.invoice');
-    }
-
-    private function calculatePriceEVFromPriceAndVAT($price, $vat)
-    {
-        $price_ev = $price - ($price / (100 + $vat)) * $vat;
-
-        return $price_ev;
-    }
-
-    private function calculatePriceFromPriceEVAndVAT($price_ev, $vat)
-    {
-        $price = ($price_ev / 100) * $vat + $price_ev;
-
-        return $price;
     }
 
 
