@@ -128,6 +128,8 @@ class Invoice extends Component
 
     public function generatePDF()
     {
+        
+        $this->validate();
     
         $viewData = [
             'title' => 'MY INVOICE',
@@ -149,7 +151,7 @@ class Invoice extends Component
         $this->items[] = $item_to_add;
 
 
-
+        
         $new_items_total_ev = floatval($this->items_total_ev) + floatval($item_to_add['amount_ev']);
 
         $new_items_total = floatval($this->items_total) + floatval($item_to_add['amount']);
@@ -165,15 +167,12 @@ class Invoice extends Component
         #update total
 
         $this->updateTotal();
-
-        
         
     }
 
     public function updated()
     {
-        #validate all field on every update
-        $this->validate();
+        
     }
 
     public function mount()
