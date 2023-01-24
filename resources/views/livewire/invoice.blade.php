@@ -285,7 +285,7 @@
                     <div>
                         <div class="flex items-center my-4">
                             <div class="basis-2/3">
-                                <p class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">items total exc vat</p>
+                                <p class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">subtotal</p>
                             </div>
                             <div class="basis-1/3">
                                 <p class="font-bold tracking-wide text-right text-xl ">{{$items_total_ev}}</p>
