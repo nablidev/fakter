@@ -12,119 +12,71 @@
             font-family: sans-serif;
         }
 
+        .document-type {
+            color: gray;
+            font-size: 48px;
+            font-weight: bold;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             table-layout: fixed;
         }
 
-        tr:nth-child(even) {
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            border: 1px solid;
+        }
+
+        .invoice-tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
-        th {
+        .invoice-th {
             height: 30px;
             text-align: center;
             padding: 12px;
             font-size: 14px;
             font-weight: bold;
+            border: 1px solid;
             
         }
 
         td {
-            text-align: center;
+            text-align: start;
             vertical-align: middle;
             word-wrap: break-word;
             padding: 12px;
             font-size: 14px;
         }
 
-        th, td {
-            
+        .total-td-2 {
+            text-align: right;
+            vertical-align: middle;
+            word-wrap: break-word;
+            padding: 12px;
+            font-size: 14px;
         }
 
-        table, th, td {
+        .total-td-1 {
+            text-align: right;
+            vertical-align: middle;
+            word-wrap: break-word;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .invoice-td {
+            text-align: center;
+            vertical-align: middle;
+            word-wrap: break-word;
+            padding: 12px;
+            font-size: 14px;
             border: 1px solid;
-        }
-
-        .document-type-info-container {
-            outline: 1px solid blue;
-        }
-
-        .document-type {
-            display: inline-block;
-            width: 30%;
-            min-width: 30%;
-            max-width: 30%;
-            text-align: start;
-        }
-
-        .document-between {
-            display: inline-block;
-            width: 30%;
-            min-width: 30%;
-            max-width: 30%;
-        }
-
-        .document-info {
-            display: inline-block;
-            width: 30%;
-            min-width: 30%;
-            max-width: 30%;
-            text-align: end;
-            
-        }
-        
-        .from-to-container {
-            padding: 10px;
-            outline: 1px solid green;
-            height: 30%;
-        }
-
-        .from-to-container:after {
-            content: '';
-            display: inline-block;
-            width: 0px;
-            height: 100%;
-            vertical-align: middle;
-        }
-
-        .from {
-            outline: 1px solid red;
-            width: 30%;
-            min-width: 30%;
-            max-width: 30%;
-            height: 80%;
-            
-            display: inline-block;
-            vertical-align: middle;
-            
-        }
-
-        .between {
-            outline: 1px solid red;
-            width: 38%;
-            min-width: 38%;
-            max-width: 38%;
-            height: 80%;
-            
-            display: inline-block;
-            vertical-align: middle;
-            
-
-        }
-
-        .to {
-            outline: 1px solid red;
-            width: 30%;
-            min-width: 30%;
-            max-width: 30%;
-            height: 80%;
-            
-            display: inline-block;
-            vertical-align: middle;
-            
-
         }
 
         .break-word {
@@ -135,67 +87,118 @@
 </head>
 <body>
 
-    <div class="document-type-info-container">
-        <div class="document-type">
-            <p>{{$document_type}}</p>
-            <p> </p>
-        </div>
-        <div class="document-between">
-
-        </div>
-        <div class="document-info">
-            <p>{{$document_no}}</p>
-            <p>{{$document_date}}</p> 
-        </div>
+    <div>
+        <table>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td class="document-type">{{$document_type}}</td>
+                    <td style="text-align: right;">{{$document_no}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align: right;">{{$document_date}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     
-    <div style="clear:both;"></div>
+    <div style="height: 20px">
 
-    <div class="from-to-container">
-        <div class="from">
-            <h3 style="text-align: center;" >from</h3>
-            <p style="" class="break-word">name: <span>{{$from_name}}</span></p>
-            <p style="" class="break-word">address: <span>{{$from_address}}</span></p>
-            <p style="" class="break-word">fiscal code: <span>{{$from_fiscal_code}}</span></p>
-        </div>
-        <div class="between">
-
-        </div>
-        <div class="to">
-            <h3 style="text-align: center;">to</h3>
-            <p style="" class="break-word">name: <span>{{$to_name}}</span></p>
-            <p style="" class="break-word">address: <span>{{$to_address}}</span></p>
-            <p style="" class="break-word">fiscal code: <span>{{$to_fiscal_code}}</span></p>
-        </div>
     </div>
-    
 
     <div>
         <table>
             <thead>
                 <tr>
-                    <th colspan="2">item name</th>
-                    <th>price</th>
-                    <th>vat</th>
-                    <th>price exc vat</th>
-                    <th>quantity</th>
-                    <th>amount</th>
+                    <th colspan="3">FROM</th>
+                    <th colspan="3">TO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>name:</td>
+                    <td colspan="2">{{$from_name}}</td>
+                    <td>name:</td>
+                    <td colspan="2">{{$to_name}}</td>
+                </tr>
+                <tr>
+                    <td>address:</td>
+                    <td colspan="2">{{$from_address}}</td>
+                    <td>address:</td>
+                    <td colspan="2">{{$to_address}}</td>
+                </tr>
+                <tr>
+                    <td>fiscal code:</td>
+                    <td colspan="2">{{$from_fiscal_code}}</td>
+                    <td>fiscal code:</td>
+                    <td colspan="2">{{$to_fiscal_code}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="height: 20px">
+
+    </div>
+
+    <div>
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th class="invoice-th" colspan="4">item name</th>
+                    <th class="invoice-th" colspan="2">price</th>
+                    <th class="invoice-th">vat</th>
+                    <th class="invoice-th" colspan="2">price exc vat</th>
+                    <th class="invoice-th">quantity</th>
+                    <th class="invoice-th" colspan="2">amount</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($items as $item)
-                <tr>
-                    <td colspan="2">{{$item['item_name']}}</td>
-                    <td>{{$item['price']}}</td>
-                    <td>{{$item['item_vat_percent']}} %</td>
-                    <td>{{$item['price_ev']}}</td>
-                    <td>{{$item['quantity']}}</td>
-                    <td>{{$item['amount']}}</td>
+                <tr class="invoice-tr">
+                    <td class="invoice-td" colspan="4">{{$item['item_name']}}</td>
+                    <td class="invoice-td" colspan="2">{{$item['price']}}</td>
+                    <td class="invoice-td">{{$item['item_vat_percent']}} %</td>
+                    <td class="invoice-td" colspan="2">{{$item['price_ev']}}</td>
+                    <td class="invoice-td">{{$item['quantity']}}</td>
+                    <td class="invoice-td" colspan="2">{{$item['amount']}}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
     
+    <div style="height: 20px">
+
+    </div>
+
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="total-td-1">SUBTOTAL:</td>
+                    <td class="total-td-2">2352.941</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="total-td-1">VAT:</td>
+                    <td class="total-td-2">447.059</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="total-td-1">REVENUE STAMP:</td>
+                    <td class="total-td-2">1.000</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="total-td-1">TOTAL:</td>
+                    <td class="total-td-2">2801.000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>
