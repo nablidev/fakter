@@ -46,52 +46,126 @@
         table, th, td {
             border: 1px solid;
         }
-        .document-type {
-            display: block;
-            float: left;
-            margin-top: 0px;
+
+        .document-type-info-container {
+            outline: 1px solid blue;
         }
+
+        .document-type {
+            display: inline-block;
+            width: 30%;
+            min-width: 30%;
+            max-width: 30%;
+            text-align: start;
+        }
+
+        .document-between {
+            display: inline-block;
+            width: 30%;
+            min-width: 30%;
+            max-width: 30%;
+        }
+
         .document-info {
-            display: block;
-            float: right;
+            display: inline-block;
+            width: 30%;
+            min-width: 30%;
+            max-width: 30%;
+            text-align: end;
+            
         }
         
-        .from {
+        .from-to-container {
+            padding: 10px;
+            outline: 1px solid green;
+            height: 30%;
+        }
+
+        .from-to-container:after {
+            content: '';
             display: inline-block;
+            width: 0px;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .from {
+            outline: 1px solid red;
+            width: 30%;
+            min-width: 30%;
+            max-width: 30%;
+            height: 80%;
+            
+            display: inline-block;
+            vertical-align: middle;
+            
+        }
+
+        .between {
+            outline: 1px solid red;
+            width: 38%;
+            min-width: 38%;
+            max-width: 38%;
+            height: 80%;
+            
+            display: inline-block;
+            vertical-align: middle;
+            
+
         }
 
         .to {
-            margin-block-end: 300px 
+            outline: 1px solid red;
+            width: 30%;
+            min-width: 30%;
+            max-width: 30%;
+            height: 80%;
+            
             display: inline-block;
-            float: right; 
+            vertical-align: middle;
+            
+
+        }
+
+        .break-word {
+            word-wrap: break-word;
         }
 
     </style>
 </head>
 <body>
-    <div class="document-type">
-        <h1>{{$document_type}}</h1>
-    </div>
-    <div class="document-info">
-        <h3>{{$document_no}}</h3>
-        <h3>{{$document_date}}</h3> 
+
+    <div class="document-type-info-container">
+        <div class="document-type">
+            <p>{{$document_type}}</p>
+            <p> </p>
+        </div>
+        <div class="document-between">
+
+        </div>
+        <div class="document-info">
+            <p>{{$document_no}}</p>
+            <p>{{$document_date}}</p> 
+        </div>
     </div>
     
     <div style="clear:both;"></div>
 
-    <div class="">
+    <div class="from-to-container">
         <div class="from">
             <h3 style="text-align: center;" >from</h3>
-            <p style="max-width: 150px; word-wrap: break-word;">name: <span>{{$from_name}}</span></p>
-            <p style="max-width: 150px; word-wrap: break-word;">address: <span>{{$from_address}}</span></p>
-            <p style="max-width: 150px; word-wrap: break-word;">fiscal code: <span>{{$from_fiscal_code}}</span></p>
+            <p style="" class="break-word">name: <span>{{$from_name}}</span></p>
+            <p style="" class="break-word">address: <span>{{$from_address}}</span></p>
+            <p style="" class="break-word">fiscal code: <span>{{$from_fiscal_code}}</span></p>
         </div>
-    
+        <div class="between">
+
+        </div>
         <div class="to">
             <h3 style="text-align: center;">to</h3>
-            <p style="max-width: 150px; word-wrap: break-word;">name: <span>{{$to_name}}</span></p>
-            <p style="max-width: 150px; word-wrap: break-word;">address: <span>{{$to_address}}</span></p>
-            <p style="max-width: 150px; word-wrap: break-word;">fiscal code: <span>{{$to_fiscal_code}}</span></p>
+            <p style="" class="break-word">name: <span>{{$to_name}}</span></p>
+            <p style="" class="break-word">address: <span>{{$to_address}}</span></p>
+            <p style="" class="break-word">fiscal code: <span>{{$to_fiscal_code}}</span></p>
         </div>
     </div>
     
