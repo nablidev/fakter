@@ -25,9 +25,6 @@
         }
 
         .invoice-table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
             border: 1px solid;
         }
 
@@ -35,18 +32,22 @@
             background-color: #f2f2f2;
         }
 
-        .invoice-th {
+        th {
             height: 30px;
             text-align: center;
             padding: 12px;
             font-size: 14px;
             font-weight: bold;
+        }
+
+        .invoice-th {
+        
             border: 1px solid;
             
         }
 
         td {
-            text-align: start;
+            text-align: left;
             vertical-align: middle;
             word-wrap: break-word;
             padding: 12px;
@@ -55,32 +56,28 @@
 
         .total-td-2 {
             text-align: right;
-            vertical-align: middle;
-            word-wrap: break-word;
-            padding: 12px;
-            font-size: 14px;
         }
 
         .total-td-1 {
             text-align: right;
-            vertical-align: middle;
-            word-wrap: break-word;
-            padding: 12px;
-            font-size: 14px;
             font-weight: bold;
         }
 
         .invoice-td {
             text-align: center;
-            vertical-align: middle;
-            word-wrap: break-word;
-            padding: 12px;
-            font-size: 14px;
             border: 1px solid;
         }
 
         .break-word {
             word-wrap: break-word;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
         }
 
     </style>
@@ -97,7 +94,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td style="text-align: right;">{{$document_date}}</td>
+                    <td style="text-align: right; font-size: 18px">{{$document_date}}</td>
                 </tr>
             </tbody>
         </table>
@@ -117,28 +114,28 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>name:</td>
+                    <td style="font-weight: bold; font-size: 16px;">name:</td>
                     <td colspan="2">{{$from_name}}</td>
-                    <td>name:</td>
+                    <td style="font-weight: bold;font-size: 16px;">name:</td>
                     <td colspan="2">{{$to_name}}</td>
                 </tr>
                 <tr>
-                    <td>address:</td>
+                    <td style="font-weight: bold;font-size: 16px;">address:</td>
                     <td colspan="2">{{$from_address}}</td>
-                    <td>address:</td>
+                    <td style="font-weight: bold;font-size: 16px;">address:</td>
                     <td colspan="2">{{$to_address}}</td>
                 </tr>
                 <tr>
-                    <td>fiscal code:</td>
+                    <td style="font-weight: bold;font-size: 16px;">fiscal code:</td>
                     <td colspan="2">{{$from_fiscal_code}}</td>
-                    <td>fiscal code:</td>
+                    <td style="font-weight: bold;font-size: 16px;">fiscal code:</td>
                     <td colspan="2">{{$to_fiscal_code}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div style="height: 20px">
+    <div style="height: 40px">
 
     </div>
 
@@ -193,12 +190,15 @@
                 </tr>
                 <tr>
                     <td colspan="2"></td>
-                    <td class="total-td-1">TOTAL:</td>
-                    <td class="total-td-2">2801.000</td>
+                    <td style="font-size: 20px" class="total-td-1">TOTAL:</td>
+                    <td style="font-weight: bold; font-size: 20px" class="total-td-2">2801.000</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
+    <footer class="footer">
+        <p>Made with: <a>www.fakter.tn</a></p>
+    </footer>
 </body>
 </html>
