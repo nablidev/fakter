@@ -51,32 +51,32 @@ class Invoice extends Component
         [   
             'num' => 1,
             'item_name' => 'Apple MacBook Pro 17', 
-            'price' => '1500', 
+            'price' => '1500.000', 
             'item_vat_percent' => '19', 
             'price_ev' => '1260.504', 
             'quantity' => '1',
             'amount_ev' => '1260.504', 
-            'amount' => '1500'
+            'amount' => '1500.000'
         ],
         [   
             'num' => 2,
             'item_name' => 'Samsung Galaxy', 
-            'price' => '700', 
+            'price' => '700.000', 
             'item_vat_percent' => '19', 
             'price_ev' => '588.235', 
             'quantity' => '1', 
             'amount_ev' => '588.235',
-            'amount' => '700'
+            'amount' => '700.000'
         ],
         [   
             'num' => 3,
             'item_name' => 'Xiomi Redmi 7', 
-            'price' => '600', 
+            'price' => '600.000', 
             'item_vat_percent' => '19', 
             'price_ev' => '504.202', 
             'quantity' => '1', 
             'amount_ev' => '504.202',
-            'amount' => '600'
+            'amount' => '600.000'
         ],
     ];
 
@@ -142,6 +142,9 @@ class Invoice extends Component
             'to_address' => $this->to_address,
             'to_fiscal_code' => $this->to_fiscal_code,
             'items' => $this->items,
+            'revenue_stamp' => $this->revenue_stamp,
+            'total_vat' => $this->total_vat,
+            'total' => $this->total,
         ];
           
         $pdfContent = PDF::loadView('myPDF', $viewData)->output();
