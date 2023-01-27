@@ -112,115 +112,118 @@
     
     {{-- ItemInput starts here --}}
 
-    <livewire:item-input />
+    <div class="mb-4">
+        <livewire:item-input />
+    </div>
     
     {{-- ItemInput ends here --}}
     
     <hr class="h-px my-1 mx-10 md:mx-64 bg-gray-300 border-0">
 
-    
-    <div class="relative overflow-x-auto shadow-md rounded-lg hidden lg:block">
-        <table class="table-fixed w-full border-separate border-black text-base text-center text-black">
-            <thead class="text-sm text-gray-700 uppercase bg-gray-200 dark:bg-gray-700">
-                <tr>
-                    <th scope="col" class="py-3">
-                        
-                    </th>
-                    <th scope="col" class="py-3">
-                        Id
-                    </th>
-                    <th colspan="4" scope="col" class="py-3">
-                        Item Name
-                    </th>
-                    <th colspan="2" scope="col" class="py-3">
-                        Price
-                    </th>
-                    <th scope="col" class="py-3">
-                        VAT
-                    </th>
-                    <th colspan="2" scope="col" class="py-3">
-                        Price excluding VAT
-                    </th>
-                    <th scope="col" class="py-3">
-                        Quantity
-                    </th>
-                    <th colspan="2" scope="col" class="py-3">
-                        Amount
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="">
-                @foreach ($items as $key => $item)
-                    <tr class="bg-white border-b dark:bg-gray-900">
-                        <td class="break-all py-4">
-                            <button wire:click="deleteItem({{$item['num']}})" class="text-red-600 font-bold text-center">x</button>
-                        </td>
-                        <td class="break-all py-4">
-                            {{$key}}
-                        </td>
-                        <th colspan="4" class="break-all py-4">
-                            {{$item['item_name']}}
+    {{-- the items table and its responsive version --}}
+    <div class="mt-4">    
+        <div class="relative overflow-x-auto shadow-md rounded-lg hidden lg:block">
+            <table class="table-fixed w-full border-separate border-black text-base text-center text-black">
+                <thead class="text-sm text-gray-700 uppercase bg-gray-200 dark:bg-gray-700">
+                    <tr>
+                        <th scope="col" class="py-3">
+                            
                         </th>
-                        <td colspan="2" class="break-all py-4">
-                            {{$item['price']}}
-                        </td>
-                        <td class="break-all py-4">
-                            {{$item['item_vat_percent']}}%
-                        </td>
-                        <td colspan="2" class="break-all px-6 py-4">
-                            {{$item['price_ev']}}
-                        </td>
-                        <td class="break-all py-4">
-                            {{$item['quantity']}}
-                        </td>
-                        <td colspan="2" class="break-all py-4">
-                            {{$item['amount']}}
-                        </td>
+                        <th scope="col" class="py-3">
+                            Id
+                        </th>
+                        <th colspan="4" scope="col" class="py-3">
+                            Item Name
+                        </th>
+                        <th colspan="2" scope="col" class="py-3">
+                            Price
+                        </th>
+                        <th scope="col" class="py-3">
+                            VAT
+                        </th>
+                        <th colspan="2" scope="col" class="py-3">
+                            Price excluding VAT
+                        </th>
+                        <th scope="col" class="py-3">
+                            Quantity
+                        </th>
+                        <th colspan="2" scope="col" class="py-3">
+                            Amount
+                        </th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody class="">
+                    @foreach ($items as $key => $item)
+                        <tr class="bg-white border-b dark:bg-gray-900">
+                            <td class="break-all py-4">
+                                <button wire:click="deleteItem({{$item['num']}})" class="text-red-600 font-bold text-center">x</button>
+                            </td>
+                            <td class="break-all py-4">
+                                {{$key}}
+                            </td>
+                            <th colspan="4" class="break-all py-4">
+                                {{$item['item_name']}}
+                            </th>
+                            <td colspan="2" class="break-all py-4">
+                                {{$item['price']}}
+                            </td>
+                            <td class="break-all py-4">
+                                {{$item['item_vat_percent']}}%
+                            </td>
+                            <td colspan="2" class="break-all px-6 py-4">
+                                {{$item['price_ev']}}
+                            </td>
+                            <td class="break-all py-4">
+                                {{$item['quantity']}}
+                            </td>
+                            <td colspan="2" class="break-all py-4">
+                                {{$item['amount']}}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
-    {{-- show only on small screens--}}
+        {{-- show only on small screens--}}
 
-    <div class="flex flex-col items-center mx-4 space-y-3 lg:hidden">
-        @foreach($items as $item)
-        <div class="block w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-            <div class="flex justify-between">
-                <div class="basis-1/7 flex flex-col justify-center items-end">
-                    <button wire:click="deleteItem({{$item['num']}})" class="text-red-600 font-bold text-center">x</button>
-                </div>
-                <div class="basis-2/7 flex flex-col justify-center items-start">
-                    <p class="break-all mb-2 text-sm font-bold tracking-tight text-gray-900">{{$item['item_name']}}</p>
-                    <p class="break-all font-normal text-gray-700">{{$item['price']}}</p>
-                </div>
-                <div class="basis-2/7 flex flex-col justify-center items-center">
-                    <p class="mb-2 font-normal text-gray-700">{{$item['item_vat_percent']}}%</p>
-                    <p class="break-all font-normal text-gray-700">{{$item['price_ev']}}</p>
-                </div>
-                <div class="basis-1/7 flex flex-col justify-center items-center">
-                    <p class="break-all font-medium text-gray-700"><span class="font-normal">x </span>{{$item['quantity']}}</p>
-                </div>
-                <div class="basis-1/7 flex flex-col justify-center items-end">
-                    <p class="break-all font-bold text-black">{{$item['amount']}}</p>
+        <div class="flex flex-col items-center mx-4 space-y-3 lg:hidden">
+            @foreach($items as $item)
+            <div class="block w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                <div class="flex justify-between">
+                    <div class="basis-1/7 flex flex-col justify-center items-end">
+                        <button wire:click="deleteItem({{$item['num']}})" class="text-red-600 font-bold text-center">x</button>
+                    </div>
+                    <div class="basis-2/7 flex flex-col justify-center items-start">
+                        <p class="break-all mb-2 text-sm font-bold tracking-tight text-gray-900">{{$item['item_name']}}</p>
+                        <p class="break-all font-normal text-gray-700">{{$item['price']}}</p>
+                    </div>
+                    <div class="basis-2/7 flex flex-col justify-center items-center">
+                        <p class="mb-2 font-normal text-gray-700">{{$item['item_vat_percent']}}%</p>
+                        <p class="break-all font-normal text-gray-700">{{$item['price_ev']}}</p>
+                    </div>
+                    <div class="basis-1/7 flex flex-col justify-center items-center">
+                        <p class="break-all font-medium text-gray-700"><span class="font-normal">x </span>{{$item['quantity']}}</p>
+                    </div>
+                    <div class="basis-1/7 flex flex-col justify-center items-end">
+                        <p class="break-all font-bold text-black">{{$item['amount']}}</p>
+                    </div>
+                    
                 </div>
                 
             </div>
-            
+            @endforeach
         </div>
-        @endforeach
-    </div>
-
+    </div>    
     {{-- --------------------------- --}}
 
     <div class="flex flex-wrap mx-3 my-3">
-        <div class="px-3 md:basis-1/3">
+        <div class="px-3 lg:basis-1/3">
             <div class="flex justify-start">
 
             </div>
         </div>
-        <div class="w-full px-3 md:basis-1/3 md:order-3">
+        <div class="w-full px-3 lg:basis-1/3 lg:order-3">
             <div class="flex justify-center md:justify-end">
                 <div class="divide-y-2 divide-black">
                     <div>
@@ -258,17 +261,12 @@
                     </div>
                     <div>
                         <div class="flex items-center mb-2">
-                            <div class="basis-1/4">
-                                <p class="font-sans text-3xl font-bold ml-4">
-                                    Total
+                            <div class="basis-1/2">
+                                <p class="font-sans text-3xl font-bold text-gray-500 ml-4">
+                                    Total:&nbsp;&nbsp;  
                                 </p>
                             </div>
-                            <div class="basis-1/4">
-                                <p class="font-sans text-3xl font-bold mr-4">
-                                    =
-                                </p>
-                            </div>
-                            <div class="basis-1/4">
+                            <div class="basis-1/2">
                                 <p class="font-sans text-3xl font-bold text-right">
                                     {{$total}}
                                 </p>
@@ -278,7 +276,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full px-3 py-3 md:basis-1/3 md:order-2">
+        <div class="w-full px-3 py-3 lg:basis-1/3 lg:order-2">
             <div class="flex justify-center">
                 <button wire:click="generatePDF" class="p-4 rounded-lg bg-red-500 hover:bg-red-600 font-bold text-white shadow-lg shadow-red-300 transition ease-in-out duration-200 translate-10">
                     Generate

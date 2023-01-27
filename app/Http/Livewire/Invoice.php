@@ -41,7 +41,6 @@ class Invoice extends Component
         'to_fiscal_code' => 'max:128',
 
         'revenue_stamp' => 'required|numeric|gte:0|lte:1000000000',
-        'discount' => 'required|numeric|gte:0|lte:1000000000',
     ];
 
     protected $listeners = ['itemAdded' => 'addItem'];
