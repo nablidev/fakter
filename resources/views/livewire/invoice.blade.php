@@ -1,6 +1,6 @@
 <div>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div class="flex flex-col p-2">
+        <div class="flex flex-col px-2">
             <div class="flex">
                 <div class="basis-1/3">
                     <label for="type" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Type</label>
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col p-2">
+        <div class="flex flex-col px-2">
             <div class="flex">
                 <div class="basis-1/3">
                     <label for="document-no" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">No</label>
@@ -29,19 +29,19 @@
             </div>
             <div class="flex">
                 <div class="basis-1/3">
-                    <label for="document-date" class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2 mx-4">Date</label>
+                    <label for="document-date" class="block uppercase tracking-wide text-gray-700 text-base font-bold mx-4">Date</label>
                 </div>
                 <div class="basis-2/3">
-                    <input wire:model="document_date" type="date" id="document-date" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-2" placeholder="01/02/1234">
+                    <input wire:model="document_date" type="date" id="document-date" class="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" placeholder="01/02/1234">
                 </div>
             </div>
         </div>
         
         <div class="md:col-span-2">
-            <hr class="h-px my-1 mx-10 md:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
+            <hr class="h-px my-1 mx-10 md:mx-64 bg-gray-300 border-0">
         </div>
 
-        <div class="flex flex-col p-2">
+        <div class="flex flex-col px-2">
             <div class="flex justify-center">
                 <p class="text-xl font-bold block uppercase tracking-wide text-gray-900 mb-4">bill from</p>
             </div>
@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    <hr class="h-px my-1 mx-10 md:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
+    <hr class="h-px my-1 mx-10 md:mx-64 bg-gray-300 border-0">
     
     {{-- ItemInput starts here --}}
 
@@ -116,7 +116,7 @@
     
     {{-- ItemInput ends here --}}
     
-    <hr class="h-px my-4 mx-10 md:mx-64 bg-gray-300 border-0 dark:bg-gray-700">
+    <hr class="h-px my-1 mx-10 md:mx-64 bg-gray-300 border-0">
 
     
     <div class="relative overflow-x-auto shadow-md rounded-lg hidden md:block">
