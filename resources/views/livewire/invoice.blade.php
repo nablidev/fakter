@@ -123,53 +123,57 @@
         <table class="table-fixed w-full border-separate border-black text-base text-center text-black dark:text-gray-400">
             <thead class="text-lg text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="py-3">
                         
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="py-3">
+                        Id
+                    </th>
+                    <th colspan="4" scope="col" class="py-3">
                         Item Name
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th colspan="2" scope="col" class="py-3">
                         Price
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="py-3">
                         VAT
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th colspan="2" scope="col" class="py-3">
                         Price excluding VAT
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="py-3">
                         Quantity
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th colspan="2" scope="col" class="py-3">
                         Amount
                     </th>
                 </tr>
             </thead>
             <tbody class="">
-                @foreach ($items as $item)
+                @foreach ($items as $key => $item)
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                        <td class="break-all px-6 py-4">
+                        <td class="break-all py-4">
                             <button wire:click="deleteItem({{$item['num']}})" class="text-red-600 font-bold text-center">x</button>
                         </td>
-
-                        <th class="break-all px-6 py-4">
+                        <td class="break-all py-4">
+                            {{$key}}
+                        </td>
+                        <th colspan="4" class="break-all py-4">
                             {{$item['item_name']}}
                         </th>
-                        
-                        <td class="break-all px-6 py-4">
+                        <td colspan="2" class="break-all py-4">
                             {{$item['price']}}
                         </td>
-                        <td class="break-all px-6 py-4">
+                        <td class="break-all py-4">
                             {{$item['item_vat_percent']}}%
                         </td>
-                        <td class="break-all px-6 py-4">
+                        <td colspan="2" class="break-all px-6 py-4">
                             {{$item['price_ev']}}
                         </td>
-                        <td class="breal-all px-6 py-4">
+                        <td class="break-all py-4">
                             {{$item['quantity']}}
                         </td>
-                        <td class="break-all px-6 py-4">
+                        <td colspan="2" class="break-all py-4">
                             {{$item['amount']}}
                         </td>
                     </tr>
@@ -253,23 +257,18 @@
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center">
-                            <div class="basis-1/2">
-                                <label for="discount" class="block uppercase tracking-wide text-gray-900 text-base font-bold mx-4">discount</label>
-                            </div>
-                            <div class="basis-1/2">
-                                <input value="{{$discount}}" wire:keyup="updateTotal" wire:model="discount" type="text" id="discount" class="appearance-none text-right block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 my-2" placeholder="0.000">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
                         <div class="flex items-center mb-2">
-                            <div class="basis-1/2">
-                                <p class="font-sans text-3xl font-bold mx-4">
-                                    Total =
+                            <div class="basis-1/4">
+                                <p class="font-sans text-3xl font-bold ml-4">
+                                    Total
                                 </p>
                             </div>
-                            <div class="basis-1/2">
+                            <div class="basis-1/4">
+                                <p class="font-sans text-3xl font-bold mr-4">
+                                    =
+                                </p>
+                            </div>
+                            <div class="basis-1/4">
                                 <p class="font-sans text-3xl font-bold text-right">
                                     {{$total}}
                                 </p>
