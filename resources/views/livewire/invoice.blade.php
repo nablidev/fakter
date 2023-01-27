@@ -121,7 +121,7 @@
     
     <div class="relative overflow-x-auto shadow-md rounded-lg hidden lg:block">
         <table class="table-fixed w-full border-separate border-black text-base text-center text-black">
-            <thead class="text-lg text-gray-700 uppercase bg-gray-200 dark:bg-gray-700">
+            <thead class="text-sm text-gray-700 uppercase bg-gray-200 dark:bg-gray-700">
                 <tr>
                     <th scope="col" class="py-3">
                         
