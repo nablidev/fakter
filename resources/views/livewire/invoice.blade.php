@@ -119,9 +119,9 @@
     <hr class="h-px my-1 mx-10 md:mx-64 bg-gray-300 border-0">
 
     
-    <div class="relative overflow-x-auto shadow-md rounded-lg hidden md:block">
-        <table class="table-fixed w-full border-separate border-black text-base text-center text-black dark:text-gray-400">
-            <thead class="text-lg text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+    <div class="relative overflow-x-auto shadow-md rounded-lg hidden lg:block">
+        <table class="table-fixed w-full border-separate border-black text-base text-center text-black">
+            <thead class="text-lg text-gray-700 uppercase bg-gray-200 dark:bg-gray-700">
                 <tr>
                     <th scope="col" class="py-3">
                         
@@ -151,7 +151,7 @@
             </thead>
             <tbody class="">
                 @foreach ($items as $key => $item)
-                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <tr class="bg-white border-b dark:bg-gray-900">
                         <td class="break-all py-4">
                             <button wire:click="deleteItem({{$item['num']}})" class="text-red-600 font-bold text-center">x</button>
                         </td>
@@ -184,7 +184,7 @@
 
     {{-- show only on small screens--}}
 
-    <div class="flex flex-col items-center mx-4 space-y-3 md:hidden">
+    <div class="flex flex-col items-center mx-4 space-y-3 lg:hidden">
         @foreach($items as $item)
         <div class="block w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100">
             <div class="flex justify-between">
